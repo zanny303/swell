@@ -1,0 +1,11 @@
+{
+  "stakeholder_mission.py": "0a6a49abbe148cde06bc2bd62a03c711abfc70e3ff8e7cfb8d6d29d9eec3b784",
+  "record_stakeholder_demo.py": "84fc3a17d0e5d5400bb5897bfca2089dfc20d5ad35371302766319d72738362d",
+  "make_stakeholder_deck.py": "e59c38107aa28b5c6aa237a8f558aeb4dc97779dfc60cc580d611da03c052f11",
+  "STAKEHOLDER_MISSION_README.md": "a92d199fe9beca727e79b1ed39ee09dd1a1d06b727eead9f56175769e80d5837",
+  "site/decision-mission.html": "176a0585a2da178331022149e359a45afd14d81f1af6cad47fe1c257a31acc93",
+  "site/decision-mission.css": "da8f19ec3b6aae32309aa44725ac37cc42f8598bd2cba7a3537edb5a08e94fbb",
+  "site/decision-mission.js": "c4192bac153f1dab29956620b8e2cf7f9053c89f3d3280f438e265aed887fdcc",
+  "site/mission-bridge.js": "817f40f7d95b3129e21621e45c6d6b4ec5abceda4bec2ffe0dc3caf7939c6f74",
+  "tests/test_stakeholder_mission.py": "00bbba27fa26cd6b92d4d74790f04423dc8eefb01293d4f2a7a0cf67e633ad9f"
+}

@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Research summary: GLO-30 and GLO-90 are digital surface models, not bare earth. GLO-30 public coverage limited, GLO-90 global land with no ocean tiles. Resampling does not create higher resolution.

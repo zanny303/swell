@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Research summary: terrain-corrected gamma-zero backscatter power; compare like polarizations, look geometry, noise and masks. Change is not a diagnosis.

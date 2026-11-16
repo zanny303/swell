@@ -1,0 +1,352 @@
+{
+ "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+ "site": "Dallas-Fort Worth, USA",
+ "model_version": "swell-0.1",
+ "commit": "",
+ "n_passes": 9,
+ "pass_days": [
+  0,
+  12,
+  24,
+  48,
+  60,
+  72,
+  84,
+  96,
+  108
+ ],
+ "train_passes": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "test_passes": [
+  6,
+  7,
+  8
+ ],
+ "beta_mm_per_wetness": -53.88740407381142,
+ "beta_se": 2.865336786211786,
+ "params": {
+  "alpha": -3.7199051663378837,
+  "b": 1.0,
+  "T": 32.0,
+  "tau": 7,
+  "rmse_train": 9.639463840830233
+ },
+ "tests": [
+  {
+   "name": "T1 GPS referee",
+   "rms_naive_mm": 13.40566670633227,
+   "rms_swell_mm": 12.201546412955365,
+   "n": 29,
+   "stations": 4,
+   "frame": "line of sight",
+   "passed": false
+  },
+  {
+   "name": "T2 Clay map",
+   "spearman": 0.07645082880809365,
+   "null_quantile": 0.7827827827827828,
+   "n_shuffle": 999,
+   "passed": false
+  },
+  {
+   "name": "T3 Forecast holdout",
+   "per_pass": [
+    {
+     "pass_index": 6,
+     "day": 84,
+     "rmse_swell": 9.98851057149087,
+     "rmse_persistence": 9.19203025009887,
+     "rmse_rain_only": 10.471544248675643,
+     "coverage90": 0.871044776119403,
+     "band_mm": 15.17588553980928
+    },
+    {
+     "pass_index": 7,
+     "day": 96,
+     "rmse_swell": 30.84279737427769,
+     "rmse_persistence": 29.696231498970345,
+     "rmse_rain_only": 47.6775420291728,
+     "coverage90": 0.18388059701492537,
+     "band_mm": 15.176039417772719
+    },
+    {
+     "pass_index": 8,
+     "day": 108,
+     "rmse_swell": 23.77899240172372,
+     "rmse_persistence": 20.898609021890866,
+     "rmse_rain_only": 23.13978323513365,
+     "coverage90": 0.3952238805970149,
+     "band_mm": 15.176109798656181
+    }
+   ],
+   "rmse_swell": 23.21270466037058,
+   "gain_vs_best_baseline": -0.31907457730066047,
+   "rmse_persistence": 21.62646098655556,
+   "rmse_rain_only": 31.188944735084597,
+   "coverage90": 0.4833830845771145,
+   "mean_band_mm": 15.176011585412729,
+   "calibration_note": "coverage well above 90 % means the bands are wider than they need to be",
+   "rmse_no_change": 17.59771968911174,
+   "mse_gain_vs_persistence_ci95": [
+    -131.67391809002814,
+    -10.910693433559278
+   ],
+   "mse_gain_vs_no_change_ci95": [
+    -259.01721187752344,
+    -198.64838823555183
+   ],
+   "passed": false
+  },
+  {
+   "name": "T4 Unseen zone",
+   "rmse_swell": 17.362156602745515,
+   "rmse_no_change": 14.458879437871339,
+   "mse_gain_ci95": [
+    -121.55046308226169,
+    -65.33046508718647
+   ],
+   "frozen_params": {
+    "alpha": -2.9025930577220462,
+    "b": 1.0,
+    "T": 32.0,
+    "tau": 7,
+    "sse": 304641.6701575519,
+    "n": 3785,
+    "rmse_train": 8.971430806473254
+   },
+   "frozen_beta": -39.636127606493005,
+   "passed": false
+  },
+  {
+   "name": "T5 Refusal",
+   "mae_all_mm": 22.602988338650363,
+   "mae_kept_mm": 19.79643271235054,
+   "kept_fraction": 0.5389814814814815,
+   "passed": true
+  },
+  {
+   "name": "T6 Paved vs open",
+   "open_mm_per_lep": 1.0707605577249166,
+   "paved_mm_per_lep": 0.5814842394757374,
+   "diff_ci95": [
+    0.43038895573847746,
+    0.5444806788535066
+   ],
+   "n_open": 44,
+   "n_paved": 748,
+   "passed": true
+  },
+  {
+   "name": "Control ground",
+   "amp_corrected_mm": 39.4298195575872,
+   "amp_naive_mm": 21.908677043683355,
+   "noise_range_mm": 11.062912496574112,
+   "n_control": 217,
+   "n_reference": 6,
+   "passed": false
+  }
+ ],
+ "contracts": {
+  "tally": {
+   "supported": 6,
+   "contradicted": 6,
+   "inconclusive": 0
+  },
+  "n": 12,
+  "zone_sigma_mm": 9.641409206833606
+ },
+ "signature": {
+  "gain_per_lep": -3.7199051663378837,
+  "T": 32.0,
+  "tau": 7.0,
+  "beta": -53.88740407381142,
+  "artifact_share": 0.0
+ },
+ "adversarial": null,
+ "zones_resolved": 51,
+ "zones_total": 64,
+ "scenarios": {
+  "storm_75mm_day30_mean_mm": NaN,
+  "storm_with_35pct_less_wetting_mean_mm": NaN
+ },
+ "pinn": {
+  "method": "discrete-residual physics-informed network, numpy, 3-24-24-1 tanh; alpha, b, T trained jointly; tau from the grid fit",
+  "steps": 4000,
+  "physics_weight": 20.0,
+  "seed": 7,
+  "n_cells": 1675,
+  "train_passes": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "heldout_passes": [
+   6,
+   7,
+   8
+  ],
+  "heldout_rmse_mm": {
+   "no_change": 16.872995206768888,
+   "physics_fit": 23.318329944922155,
+   "network_only": 20.23540924877965,
+   "physics_informed": 18.150926890182777
+  },
+  "discovered": {
+   "alpha": 0.007643243380534182,
+   "b": 0.7252636272999728,
+   "T": 30.322323271593167
+  },
+  "grid_fit": {
+   "alpha": -3.7199051663378837,
+   "b": 1.0,
+   "T": 32.0,
+   "tau": 7
+  },
+  "history": [
+   [
+    200,
+    79.969,
+    0.0157
+   ],
+   [
+    400,
+    87.728,
+    0.0639
+   ],
+   [
+    600,
+    90.958,
+    0.1145
+   ],
+   [
+    800,
+    96.061,
+    0.1558
+   ],
+   [
+    1000,
+    81.06,
+    0.1648
+   ],
+   [
+    1200,
+    86.128,
+    0.1814
+   ],
+   [
+    1400,
+    78.342,
+    0.1499
+   ],
+   [
+    1600,
+    74.535,
+    0.1437
+   ],
+   [
+    1800,
+    70.819,
+    0.1525
+   ],
+   [
+    2000,
+    75.428,
+    0.1366
+   ],
+   [
+    2200,
+    71.157,
+    0.1401
+   ],
+   [
+    2400,
+    84.759,
+    0.1294
+   ],
+   [
+    2600,
+    90.858,
+    0.1328
+   ],
+   [
+    2800,
+    67.125,
+    0.1494
+   ],
+   [
+    3000,
+    63.509,
+    0.1487
+   ],
+   [
+    3200,
+    63.997,
+    0.1378
+   ],
+   [
+    3400,
+    70.849,
+    0.139
+   ],
+   [
+    3600,
+    67.688,
+    0.1256
+   ],
+   [
+    3800,
+    58.902,
+    0.1239
+   ],
+   [
+    4000,
+    61.886,
+    0.157
+   ]
+  ],
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "physics_helps": true,
+  "reading": "On held-out passes the physics-informed network has lower error than the same network without physics."
+ },
+ "rl": {
+  "method": "Q-learning, linear value function over 5 zone features, block-bootstrapped rain from this site's record",
+  "assumption": "moisture-stabilising a zone cuts its wetness swings by 50%; one zone per 12-day cycle, 5 cycles; exposure = cells x mm beyond 3 mm from today",
+  "episodes": 1200,
+  "heldout_sequences": 150,
+  "zones": 57,
+  "exposure": {
+   "no action": 239.05700367734863,
+   "random order": 238.36288826245476,
+   "largest movement first": 239.14373530412732,
+   "largest clay gain first": 238.90709157512086,
+   "learned policy": 238.903789775783
+  },
+  "best_simple_rule": "random order",
+  "learned_vs_best_rule": -0.002269235438751124,
+  "learned_beats_rules": false,
+  "suggested_order": [
+   "Z66",
+   "Z10",
+   "Z03",
+   "Z44",
+   "Z75"
+  ],
+  "weights": {
+   "bias": -86.32610863762284,
+   "zone size x clay gain": -14.493106373604064,
+   "movement so far": -58.85400016487421,
+   "wetness now": -2.8957544230247896,
+   "movement still to come": -0.905445942207852,
+   "cycles left": -35.33742140756159
+  },
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "reading": "The learned policy does not beat the best simple rule (random order). The simple rule is enough here. Reported as found."
+ }
+}

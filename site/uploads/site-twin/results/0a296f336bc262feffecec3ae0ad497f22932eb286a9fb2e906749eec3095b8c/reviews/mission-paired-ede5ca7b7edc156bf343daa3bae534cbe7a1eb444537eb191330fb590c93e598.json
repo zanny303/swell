@@ -1,0 +1,221 @@
+{
+  "version": "decision-mission-1.0",
+  "run_id": "0a296f336bc262feffecec3ae0ad497f22932eb286a9fb2e906749eec3095b8c",
+  "site_hash": "40acce70698b184cdd244f1e9db0fe4f9761d4e37a819104073ed33e4742b01f",
+  "role": "planner",
+  "radar_selection": {
+    "row": 55,
+    "col": 34,
+    "los_mm": -34.444856747077466,
+    "coherence": 0.31397849486933815,
+    "lat": 32.62319063581318,
+    "lon": -96.76282842717683
+  },
+  "local_location": {
+    "lat": 32.623191,
+    "lon": -96.762828
+  },
+  "terrain": {
+    "source": "USGS 3DEP elevation service; resampled analysis grid, not native resolution",
+    "source_sha256": "f241bfbda625fa8d63b50a94882112a832b97b1ec7a17ead2b98edfb4777c68d",
+    "source_url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=709593.6071185069%2C3611424.955797232%2C710193.6071185069%2C3612024.955797232&bboxSR=32614&imageSR=32614&size=60%2C60&format=tiff&pixelType=F32&interpolation=RSP_BilinearInterpolation&adjustAspectRatio=false&f=image",
+    "dx": 10.0,
+    "n": 60,
+    "epsg": 32614,
+    "vertical_datum": "USGS 3DEP mosaic; vertical datum varies by source and is not independently verified for this export"
+  },
+  "storm_mm_h": [
+    20.0,
+    35.0,
+    15.0
+  ],
+  "model": "site-diffusive-screen-1.2",
+  "boundary": "closed \u2014 rainfall ponding screening, not river flood prediction",
+  "edits": [
+    {
+      "row": 1,
+      "col": 37,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 2,
+      "col": 36,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 2,
+      "col": 37,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 2,
+      "col": 38,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 3,
+      "col": 35,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 3,
+      "col": 36,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 3,
+      "col": 37,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 3,
+      "col": 38,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 3,
+      "col": 39,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 4,
+      "col": 36,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 4,
+      "col": 37,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 4,
+      "col": 38,
+      "kind": "drain",
+      "rate": 30
+    },
+    {
+      "row": 5,
+      "col": 37,
+      "kind": "drain",
+      "rate": 30
+    }
+  ],
+  "assumptions": {
+    "infiltration_mm_h": 5.0,
+    "roughness": 0.04,
+    "suction_mm": 0.0,
+    "moisture_deficit": 0.0
+  },
+  "metrics": {
+    "baseline_storage_m3": 19799.999999999967,
+    "intervention_storage_m3": 19684.033591519412,
+    "storage_reduction_m3": 115.9664084805554,
+    "baseline_peak_m": 1.5555618271326566,
+    "intervention_peak_m": 1.5555618271326566,
+    "baseline_wet_m2": 62400.0,
+    "intervention_wet_m2": 62400.0,
+    "rain_m3": 25200.0,
+    "baseline_balance_residual_m3": 3.2741809263825417e-11,
+    "intervention_balance_residual_m3": 3.2741809263825417e-11,
+    "baseline_infiltrated_m3": 5400.000000000001,
+    "intervention_infiltrated_m3": 5400.000000000001,
+    "intervention_captured_m3": 115.96640848055628
+  },
+  "cases": [
+    {
+      "name": "Original assumptions \u00b7 30 s",
+      "infiltration_factor": 1.0,
+      "timestep_s": 30.0,
+      "baseline_storage_m3": 19799.999999999967,
+      "intervention_storage_m3": 19684.033591519412,
+      "storage_reduction_m3": 115.9664084805554,
+      "baseline_peak_m": 1.5555618271326566,
+      "intervention_peak_m": 1.5555618271326566,
+      "baseline_wet_m2": 62400.0,
+      "intervention_wet_m2": 62400.0,
+      "rain_m3": 25200.0,
+      "baseline_balance_residual_m3": 3.2741809263825417e-11,
+      "intervention_balance_residual_m3": 3.2741809263825417e-11,
+      "baseline_infiltrated_m3": 5400.000000000001,
+      "intervention_infiltrated_m3": 5400.000000000001,
+      "intervention_captured_m3": 115.96640848055628
+    },
+    {
+      "name": "Both alternatives \u00b7 15 s",
+      "infiltration_factor": 1.0,
+      "timestep_s": 15.0,
+      "baseline_storage_m3": 19799.999999999836,
+      "intervention_storage_m3": 19683.878173287154,
+      "storage_reduction_m3": 116.12182671268238,
+      "baseline_peak_m": 1.6299856046582548,
+      "intervention_peak_m": 1.620652429357446,
+      "baseline_wet_m2": 50900.0,
+      "intervention_wet_m2": 50900.0,
+      "rain_m3": 25200.0,
+      "baseline_balance_residual_m3": 1.6370904631912708e-10,
+      "intervention_balance_residual_m3": 1.673470251262188e-10,
+      "baseline_infiltrated_m3": 5400.000000000001,
+      "intervention_infiltrated_m3": 5400.000000000001,
+      "intervention_captured_m3": 116.12182671268049
+    },
+    {
+      "name": "Lower infiltration \u00b7 30 s",
+      "infiltration_factor": 0.8,
+      "timestep_s": 30.0,
+      "baseline_storage_m3": 20880.00000000004,
+      "intervention_storage_m3": 20763.88086351771,
+      "storage_reduction_m3": 116.11913648233167,
+      "baseline_peak_m": 1.5966415876465228,
+      "intervention_peak_m": 1.5966415876465228,
+      "baseline_wet_m2": 64600.0,
+      "intervention_wet_m2": 64500.0,
+      "rain_m3": 25200.0,
+      "baseline_balance_residual_m3": 4.3655745685100555e-11,
+      "intervention_balance_residual_m3": 4.729372449219227e-11,
+      "baseline_infiltrated_m3": 4320.000000000001,
+      "intervention_infiltrated_m3": 4320.000000000001,
+      "intervention_captured_m3": 116.11913648233848
+    },
+    {
+      "name": "Higher infiltration \u00b7 30 s",
+      "infiltration_factor": 1.2,
+      "timestep_s": 30.0,
+      "baseline_storage_m3": 18720.00000000003,
+      "intervention_storage_m3": 18604.214415178678,
+      "storage_reduction_m3": 115.78558482135122,
+      "baseline_peak_m": 1.5144417271531438,
+      "intervention_peak_m": 1.5144417271531438,
+      "baseline_wet_m2": 60300.0,
+      "intervention_wet_m2": 60300.0,
+      "rain_m3": 25200.0,
+      "baseline_balance_residual_m3": 4.001776687800884e-11,
+      "intervention_balance_residual_m3": 4.18367562815547e-11,
+      "baseline_infiltrated_m3": 6480.000000000001,
+      "intervention_infiltrated_m3": 6480.000000000001,
+      "intervention_captured_m3": 115.78558482135595
+    }
+  ],
+  "storage_reduction_range_m3": [
+    115.78558482135122,
+    116.12182671268238
+  ],
+  "direction": "Less stored water in every tested case",
+  "timestep_effect_m3": 0.15541823212697636,
+  "numerical_mass_balance": true,
+  "warning": "Four deterministic comparisons of the same storm; not a probability interval or validation against observed floods. Timestep and infiltration checks do not establish spatial convergence, sewer capacity, downstream safety or causal linkage to radar. Closed boundaries and idealized sinks. Reported storage reduction is local modeled storage, not proven avoided flooding.",
+  "verification_required": "Compare land availability, ownership, maintenance responsibility and downstream effects before design.",
+  "engineering_approved": false,
+  "reviewed_utc": "2026-11-16T00:53:37.216791+00:00",
+  "record_id": "ede5ca7b7edc156bf343daa3bae534cbe7a1eb444537eb191330fb590c93e598"
+}

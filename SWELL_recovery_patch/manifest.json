@@ -1,0 +1,92 @@
+[
+  {
+    "path": "ai_provider.py",
+    "old_sha256": "46eb7ad0a69e26365c692064cc7fdf02c1cfbb3d4bea8621997eb93100674405",
+    "new_sha256": "9e8a4b97837dd039c2c0441bad4ca022e939153a901490c2dc7840a86fa44059"
+  },
+  {
+    "path": "inspect_real_science.py",
+    "old_sha256": null,
+    "new_sha256": "51e36729c60b08a9c342ac94c5fbe7b7ec28cfaea53a58b7899306c53dd7d020"
+  },
+  {
+    "path": "run_swell.py",
+    "old_sha256": "1ec33bf476b8fea4d1e003e4fbfabbf4be13c7bf523f3d94e46a3962f58d1eff",
+    "new_sha256": "beff1a61dd38f00f20eeb334d6e64b88d2302e60b3a3a1a9441383af9cc9cc99"
+  },
+  {
+    "path": "site/ai-copilot.js",
+    "old_sha256": "c5eec9547413b5ee69f29d554c834d29385b95ae7c0e471dd9486996f8d4d29e",
+    "new_sha256": "d61ff600e1b9a6b79f0c8c086958a7369782b2322c9383f35f4e569771e0a529"
+  },
+  {
+    "path": "site/evidence-screen.js",
+    "old_sha256": null,
+    "new_sha256": "1142ec495aac3200e6759d758a7cb5f934ce635643117bb2820730e8b8aec63d"
+  },
+  {
+    "path": "site/evidence-workbench.js",
+    "old_sha256": null,
+    "new_sha256": "112ab4911afad75c6bbdf3598e41008f03752c3d170b89650f56cc327d741f0a"
+  },
+  {
+    "path": "site/focus.js",
+    "old_sha256": "4bd63e679ae9bf737b6c98ac133975f1514634043c086c4145b8e23433166b89",
+    "new_sha256": "bb301c48dd283cf3b02e8e918d604957dc561c6a9656a634e3631bb4afd59f65"
+  },
+  {
+    "path": "site/index.html",
+    "old_sha256": "24b620ddd9363516846d7a326949168979e768d11082c70565bec18805f4fb32",
+    "new_sha256": "c60e88031a2dde2fe7c5b681cc2d52608aced24726ed307364138a63c79fd8b7"
+  },
+  {
+    "path": "site/planner.js",
+    "old_sha256": "8bd685d472258ecf6eca8762689bdf6a943f1baeb08544ba4ef434bdc8cf6aaa",
+    "new_sha256": "c4276fa96abc4d2c7abf07bd731608f4b237f04673af3494c11bcc5f3cf2db03"
+  },
+  {
+    "path": "site/site-twin.js",
+    "old_sha256": "2125f1b50b5ac9f725e09cb8380f3a2bbdfc5b63f383bd697fe0479e88f72677",
+    "new_sha256": "a830782a8a676291eb8d7cba684fa7349ea05b26744c8d6599b9921428367ea3"
+  },
+  {
+    "path": "site/studio.js",
+    "old_sha256": "63a4b782c8a1c6776760463153b448348b689b6c0de446cb85e2ebeb4726f8b8",
+    "new_sha256": "9f285858483bde438d945d515f5d04fe3c473bf4f33167062d26a416c7d5a3b6"
+  },
+  {
+    "path": "site/usability.js",
+    "old_sha256": "3e52334a22b854d6fe6000839da70e2050598c5c966a8462dbb217119e99a870",
+    "new_sha256": "d4385869b940894c9a472f87afd1652ac5828ad729925ba8a3b33528bf14b86a"
+  },
+  {
+    "path": "site/usecases.js",
+    "old_sha256": "c4a6fc906d97491920a3dfa31fec6e354f2ed3476f3e4674e6e5911a6ab27d70",
+    "new_sha256": "59486d22eddd8991868a9d4bd39b966ade3ec7c0498178165ae303e1506ddaab"
+  },
+  {
+    "path": "site/worlds.js",
+    "old_sha256": "d30e97cd52a9ec30e3840f6f79aac8591bcbcbb0c433170ad8203e2bea1d7d36",
+    "new_sha256": "71aca7c71a50d2e97dc634608d2edda78422a427c025857cea672b1a10ab3e0e"
+  },
+  {
+    "path": "tests/test_evidence_screen.cjs",
+    "old_sha256": null,
+    "new_sha256": "2db4fd2eebb897dab4f290c042a66055d24bf8169847968eaf19f54b681216ff"
+  },
+  {
+    "path": "tests/test_recovery.py",
+    "old_sha256": null,
+    "new_sha256": "bbe8e0a93f05bcb794f1ba38ac704b802ba3b571ab247417fc032bfb1dd4f0c8"
+  },
+  {
+    "path": "world_mosaics.py",
+    "old_sha256": null,
+    "new_sha256": "831000b30e724a73aef2e7006f8fd308771f98e266cb793b1bb824084b8bfbf6"
+  },
+  {
+    "path": "record_recovery_demo.py",
+    "old_sha256": null,
+    "new_sha256": "a433aaa6137fc2204a1b27be8828341b761eab18067e1c37adc6e3e0286d0b88"
+  }
+]

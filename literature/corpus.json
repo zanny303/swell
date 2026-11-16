@@ -1,0 +1,117 @@
+[
+  {
+    "title": "NASA OPERA",
+    "url": "https://www.jpl.nasa.gov/go/opera/products/dswx-product-suite/",
+    "file": "source-01.txt"
+  },
+  {
+    "title": "USGS 3DEP",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "file": "source-02.txt"
+  },
+  {
+    "title": "Landlab OverlandFlow",
+    "url": "https://landlab.csdms.io/user_guide/overland_flow_user_guide.html",
+    "file": "source-03.txt"
+  },
+  {
+    "title": "NOAA National Water Model",
+    "url": "https://water.noaa.gov/about/nwm",
+    "file": "source-04.txt"
+  },
+  {
+    "title": "EPA SWMM",
+    "url": "https://github.com/USEPA/Stormwater-Management-Model",
+    "file": "source-05.txt"
+  },
+  {
+    "title": "NISAR GUNW",
+    "url": "https://nisar-docs.asf.alaska.edu/gunw/",
+    "file": "source-06.txt"
+  },
+  {
+    "title": "NeuralHydrology",
+    "url": "https://github.com/neuralhydrology/neuralhydrology",
+    "file": "source-07.txt"
+  },
+  {
+    "title": "NeurIPS 2021: Characterizing possible failure modes in physics-informed neural networks",
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/df438e5206f31600e6ae4af72f2725f1-Abstract.html",
+    "file": "source-08.txt"
+  },
+  {
+    "title": "ASF NISAR data products maturity",
+    "url": "https://nisar-docs.asf.alaska.edu/products-overview/",
+    "file": "source-09.txt"
+  },
+  {
+    "title": "NASA NISAR GCOV user guide",
+    "url": "https://nisar-docs.asf.alaska.edu/gcov/",
+    "file": "source-10.txt"
+  },
+  {
+    "title": "NASA ANUGA software catalog",
+    "url": "https://software.nasa.gov/software/NPO-52605-1",
+    "file": "source-11.txt"
+  },
+  {
+    "title": "NASA Prithvi-EO 2.0",
+    "url": "https://github.com/NASA-IMPACT/Prithvi-EO-2.0",
+    "file": "source-12.txt"
+  },
+  {
+    "title": "Copernicus DEM public distribution",
+    "url": "https://registry.opendata.aws/copernicus-dem/",
+    "file": "source-13.txt"
+  },
+  {
+    "title": "Welch et al. 2024, Geophysical Research Letters: drought-induced inelastic subsidence in expansive soils",
+    "url": "https://gsprs-pku.github.io/articles/Welch_2024_GRL.pdf",
+    "file": "source-14.txt"
+  },
+  {
+    "title": "De Zan et al. 2014, IEEE TGRS: a SAR interferometric model for soil moisture",
+    "url": "https://ites.unistra.fr/websites/eost/ites/Images_Equipes/DA/MDIS_presentation/MDIS2019_DeZan.pdf",
+    "file": "source-15.txt"
+  },
+  {
+    "title": "Zheng et al. 2022 and NISAR science team briefing: closure phase and systematic bias in multilooked interferograms",
+    "url": "https://nisar.jpl.nasa.gov/documents/68/1-NISAR_Zheng_ClosureBias.pdf",
+    "file": "source-16.txt"
+  },
+  {
+    "title": "Maghsoudi et al. 2022, Remote Sensing of Environment: characterizing and correcting phase biases in short-term multilooked interferograms",
+    "url": "https://eprints.whiterose.ac.uk/187294/1/1-s2.0-S0034425722001365-main.pdf",
+    "file": "source-17.txt"
+  },
+  {
+    "title": "Karamvasis and Karathanassi: soil moisture estimation from Sentinel-1 interferometric observations over arid regions; InSAR4SM code",
+    "url": "https://github.com/kleok/insar4sm",
+    "file": "source-18.txt"
+  },
+  {
+    "title": "Wig, Michaelides and Zebker: fine-resolution soil moisture from cumulative InSAR closure phase",
+    "url": "https://web.stanford.edu/class/ee367/Winter2022/poster/wig_poster.pdf",
+    "file": "source-19.txt"
+  },
+  {
+    "title": "Yao et al. 2025, arXiv 2509.18176: deep learning for spatio-temporal forecasting of InSAR ground deformation in eastern Ireland",
+    "url": "https://arxiv.org/pdf/2509.18176",
+    "file": "source-20.txt"
+  },
+  {
+    "title": "Raissi, Perdikaris and Karniadakis 2019, Journal of Computational Physics: physics-informed neural networks",
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/df438e5206f31600e6ae4af72f2725f1-Abstract.html",
+    "file": "source-21.txt"
+  },
+  {
+    "title": "Yun et al. 2022, NeurIPS Tackling Climate Change with Machine Learning workshop: remote estimation of geologic composition using InSAR",
+    "url": "https://www.climatechange.ai/papers/neurips2022/39",
+    "file": "source-22.txt"
+  },
+  {
+    "title": "OPERA Surface Displacement from Sentinel-1 (DISP-S1): product access and structure",
+    "url": "https://docs.maap-project.org/en/hub/science/OPERA/OPERA_Surface_Displacement.html",
+    "file": "source-23.txt"
+  }
+]

@@ -1,0 +1,7 @@
+SWELL EARTH STREAMING RELEASE
+1. Extract, open terminal in swell folder.
+2. python run_swell.py
+3. Open http://127.0.0.1:8000
+Optional (recommended on a connected laptop): python install_renderers.py (Node/npm required)
+Historical Earth globe without external libraries: http://127.0.0.1:8000/earth-preview.html
+See docs/EARTH_STREAMING_RELEASE.md for live imagery, optional keys, forecast, source details and verification limits.

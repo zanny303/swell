@@ -1,0 +1,29 @@
+REAL DATA: Dallas-Fort Worth, USA | NASA NISAR GUNW (8 pairs, see out/provenance.json) | ['2026-06-30', '2026-07-12', '2026-07-24', '2026-08-17', '2026-08-29', '2026-09-10', '2026-09-22', '2026-10-04', '2026-10-16'] | Last interferometric pair coherence, matched cached NPZ and study timeline
+Science boundary: observed LOS, not vertical motion. Local forecast is conditional screening, not design.
+Selected observation: Cell 55, 34 · -34.44 mm latest referenced LOS change · coherence 0.31. Last interferometric pair coherence, matched cached NPZ and study timeline
+Scene: 01_radar_and_role
+Terrain: USGS 3DEP elevation service; resampled analysis grid, not native resolution · 60 × 60, 10 m analysis cells · cached · f241bfbda625…
+Cached independent GNSS: 4 stations in matching region; TXDA: 9/9 dates · TXDF: 9/9 dates · TXHH: 5/9 dates · TXRD: 9/9 dates. Vertical point evidence, not a LOS referee.
+Esri World Imagery aligned to the DEM; acquisition date unspecified.
+Scene: 02_local_terrain
+Routing: Deltares PyFlwDir 0.6.0 · 6 local basins · largest upstream area 145,100 m²
+Edits: 13 edited cells · 1,300 m² modeled footprint
+Scene: 03_intervention_footprint
+Comparison: 19,800.0 m³ -> 19,684.0 m³ | 116.0 m³ less storage
+Scene: 04_same_storm_comparison
+Numerical review: Less stored water in every tested case
+Tested storage difference 115.8 to 116.1 m³; mass balance passed in both arms of all four cases. Not a probability interval.
+Assumption	Baseline m³	Intervention m³
+Original assumptions · 30 s	19,800.0	19,684.0
+Both alternatives · 15 s	19,800.0	19,683.9
+Lower infiltration · 30 s	20,880.0	20,763.9
+Higher infiltration · 30 s	18,720.0	18,604.2
+Scene: 05_numerical_review
+Stakeholder action: Inspect the proposed drainage location, survey elevations and collect independent displacement measurements. Review the painted footprint and the 115.8 to 116.1 m³ modeled storage difference across the tested assumptions. Do not approve design from this result.
+Scene: 06_stakeholder_action
+VERIFIED exported ZIP, matching run and observation hash, draft role decision and all member hashes.
+AI: Live provider response received for the current run. AI explanation only; the numerical results are produced by the saved physical run, not the language model.
+Scene: 07_decision_and_live_ai
+Page errors: 0
+Complete decision export: True
+Raw recording may exceed 30 seconds. Use up to seven slides for official demo.

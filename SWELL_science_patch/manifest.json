@@ -1,0 +1,93 @@
+[
+  {
+    "path": "ai_provider.py",
+    "old_sha256": "451f05ee2f1ff81e2878ebbe70eb7bd52102fbeac1a2bb5a8d0644c88424d6dc",
+    "new_sha256": "46eb7ad0a69e26365c692064cc7fdf02c1cfbb3d4bea8621997eb93100674405"
+  },
+  {
+    "path": "PREREGISTRATION.md",
+    "old_sha256": "06d6bda12f4432db531ca199933f576750861a563de965dc3472b2a917a724fe",
+    "new_sha256": "7f4e4b987fe3fec63e5963f5c1288dc02e932659dedb774afec1e97a140b60ba"
+  },
+  {
+    "path": "decision_ledger.py",
+    "old_sha256": "b4160f6a9256d521a918b9306be1af8a60ef08302172347c89b23aeceb11c3c7",
+    "new_sha256": "864197a8117f3339a7d6a5bf9413e2e51f0716af800304f7462a424def414532"
+  },
+  {
+    "path": "claude_provider.py",
+    "old_sha256": "12f49ea41dffcb5029d4386ef1604edd7a56da4e0535a5cbe42cd39efff67400",
+    "new_sha256": "83a541127f748ccc37a615dab162a6a1b36bef37f8ad2e886f8fc1de8f79be8d"
+  },
+  {
+    "path": "swell/stats.py",
+    "old_sha256": "62cad1452c0093e08b74a8e05dec5321d8df23d61d476614de0b781c4496c791",
+    "new_sha256": "7d3d92e47851f31e6e378c50683f31e6358458064a9e8a7ed80143d49e6093a2"
+  },
+  {
+    "path": "swell/pinn.py",
+    "old_sha256": "93708d9914032f1da3426c99357bb3be391b3b8942578e5d5584b597b87e5bc6",
+    "new_sha256": "2c3e2ff8f3fc2386e610695959cc10e4a34ee949491239bf36e32b75cdea3e9d"
+  },
+  {
+    "path": "swell/fit.py",
+    "old_sha256": "49fd65144f1b5abb7752ebbe2e4364774340dbc0adbd77accff98b1b256accf7",
+    "new_sha256": "59769e51f9632fb07fa778823236bd0ce54a131d5f65ad8424386c1d6e77ef07"
+  },
+  {
+    "path": "swell/validate.py",
+    "old_sha256": "bda0c6d756b642c60d325ec90cb1edef079754544bc9826aa3aa16ee6888b3d2",
+    "new_sha256": "2ccb2b237c5b150a5dd335f660d31096397689a702c57dabc25677fe034e81c9"
+  },
+  {
+    "path": "swell/paper.py",
+    "old_sha256": "321cf3eb90f39951ebf79178457f0058b0c907c43bd3a442b942ed5aef51f1f6",
+    "new_sha256": "92a8746254652d36e22393330a6a2f48abb9a492b410621046347cbd0bde8dbb"
+  },
+  {
+    "path": "swell/science_audit.py",
+    "old_sha256": null,
+    "new_sha256": "b69874b67791fa393a96d1d8d9c61d1b9e47e898275290b63f95d18538991e7d"
+  },
+  {
+    "path": "site/usecases.js",
+    "old_sha256": "14072a35c35cac7e93910767304616f6aa8732685ab30ceca69b5cdddb5cd3dc",
+    "new_sha256": "c4a6fc906d97491920a3dfa31fec6e354f2ed3476f3e4674e6e5911a6ab27d70"
+  },
+  {
+    "path": "site/causal.js",
+    "old_sha256": "051f351d6bdcad3f50155e3d3a99e667aaeedf9b631820ca4d09f372d1bf703d",
+    "new_sha256": "78dd2dccdcf6469ad78f9454bc8d70bafcbf55b5d35bf71cfcaa71ba7e2ebc8a"
+  },
+  {
+    "path": "site/research.js",
+    "old_sha256": "d0ec4727c391ad6e601daa48fcbc1e742bd530ba383cb71e9c1b41e17a8a5ef3",
+    "new_sha256": "d7b60ce01965650970452cd31148ae7a6e38f65840997fbea2aa420655df90f4"
+  },
+  {
+    "path": "site/studio.js",
+    "old_sha256": "c8be0e9d8691f45aab06ad47f2ed6ed7c184be3d3ab7194c23cdb03718c1f721",
+    "new_sha256": "63a4b782c8a1c6776760463153b448348b689b6c0de446cb85e2ebeb4726f8b8"
+  },
+  {
+    "path": "site/planner.js",
+    "old_sha256": "ab310a83c6e5e4aec95c95d02523d357ca3c356d6b93254170793450401a1f68",
+    "new_sha256": "8bd685d472258ecf6eca8762689bdf6a943f1baeb08544ba4ef434bdc8cf6aaa"
+  },
+  {
+    "path": "revalidate_science.py",
+    "old_sha256": null,
+    "new_sha256": "b0d7dcf8e25442e387e4fe2cb0dcd7a5798388b7eb2f937efc6c588119eeae50"
+  },
+  {
+    "path": "record_science_demo.py",
+    "old_sha256": null,
+    "new_sha256": "84b0616a49badf535639684b96d01021ba9ec23224899200b259ea8c99220aad"
+  },
+  {
+    "path": "tests/test_science_revision.py",
+    "old_sha256": null,
+    "new_sha256": "8d05b7b6eaa72b252a0b8e442d6c5d7174bbd3f342bb1549b3bfc74fc0049f91",
+    "payload_path": "tests/test_science_revision.py.patch"
+  }
+]

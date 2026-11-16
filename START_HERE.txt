@@ -1,0 +1,42 @@
+SWELL | start here
+
+NEW IN THIS VERSION (extract the zip over your swell folder; it does not touch out/, data/, site/data or .env)
+  A. NISAR troposphere + tide correction. NASA ships these layers inside every NISAR file but does not apply them.
+     SWELL now applies them by default. Re-run the twin and the correction study in one go:
+          python compare_corrections.py
+     (or press "Run the correction study" on the Connections page). It re-uses your saved radar windows, fetches only the
+     small correction layers, runs four processing chains, and shows every score side by side in Verify.
+  B. Public copy for judges (no login): 
+          python build_public_site.py --repo https://github.com/<you>/<repo>
+     then push to GitHub and import the repository on vercel.com (vercel.json serves public/).
+     Check locally first:  python -m http.server 8080 --directory public   ->  http://127.0.0.1:8080/
+  C. GPS referee: the build now fetches free daily GPS positions (Nevada Geodetic Laboratory) for stations inside the box,
+     so test T1 runs instead of "not run". Rebuild once to get it:   python real_site.py --site dallas --yes
+     (re-uses the saved radar; takes a few minutes for the satellites step at the end).
+  D. NISAR radar brightness (GCOV, HH and HV polarizations) is read in the satellites step: an independent NISAR view of
+     soil wetting. Map: "Show: NISAR brightness change". Not used in the fit.
+  E. "Compare dates" button under the map: swipe between two radar dates (raw NISAR, clay movement, false signal, brightness).
+  F. 3D city "Buildings + terrain" view now pulls back so several ground cells are in frame.
+  Order on your machine:  python real_site.py --site dallas --yes   ->   python compare_corrections.py   ->   python build_public_site.py --repo <link>
+
+
+Your last run found the radar passes and the rain, then stopped because two Python packages were missing.
+This version installs missing packages by itself. If you prefer to do it by hand, in PowerShell with your venv active:
+
+     python -m pip install rasterio pyproj h5py scipy matplotlib earthaccess
+
+Then:
+  1. python run_swell.py
+  2. Open http://127.0.0.1:8000/connections.html
+  3. Press "Build the real twin" (Dallas). Watch the Progress box.
+       - It installs anything missing, reads the site window from 8 NISAR pairs, fits and tests the model.
+       - When it says TWIN READY, open http://127.0.0.1:8000/ : the Decision Studio now shows the real site.
+  4. In the Decision Studio press "3D city" on the map rail for real terrain and buildings (uses your saved Cesium token).
+
+If it stops, copy everything in the Progress box (or the file out\real_site_log.txt). It contains no passwords.
+
+Record a walkthrough so it can be checked (and reused for the submission video):
+     python -m pip install playwright
+     python -m playwright install chromium
+     python record_demo.py          (while run_swell.py is running in another window)
+   It clicks through every step by itself and saves demo_out\swell_demo.webm, screenshots and demo_report.txt.

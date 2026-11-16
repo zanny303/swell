@@ -1,0 +1,46 @@
+{
+  "stakeholder_mission.py": {
+    "old": "0a6a49abbe148cde06bc2bd62a03c711abfc70e3ff8e7cfb8d6d29d9eec3b784",
+    "new": "74e0cfb0627b1c74031e7610871a8020b1f8b569deb623c22ae0045a75b699c9"
+  },
+  "radar_investigation.py": {
+    "old": null,
+    "new": "d27af8a56995de04b9f889170ba526e1c3d1d9c693a5cb66c22af79a3452ab09"
+  },
+  "evaluate_momentum.py": {
+    "old": null,
+    "new": "4187a84ad8c40b7cfb98b6f062368a87385e629fefe0d0edc135f3a35dc0ce7b"
+  },
+  "competition_replay.py": {
+    "old": null,
+    "new": "0b5d58004c306ab5dbd775eafa1b9a918142c42475833bff78ebb6a8056d24ff"
+  },
+  "record_stakeholder_demo.py": {
+    "old": "70086524ef0bbb5075ec000a8ec574e32e67af923c38fe6490f918e8fbdc8503",
+    "new": "7943d779313d67430c4a2731d606d06d5ecd2a72bd5bc965cf19f16cebe88bcf"
+  },
+  "site/decision-mission.js": {
+    "old": "f2becb803525caab84f922143e08a68e0391e10548e33cd2426fe9f86760cb70",
+    "new": "7155d8b9021c29debf0d014c7e4974f5c28b516f20edfa02d87408dd0dbc675c"
+  },
+  "site/decision-mission.css": {
+    "old": "da8f19ec3b6aae32309aa44725ac37cc42f8598bd2cba7a3537edb5a08e94fbb",
+    "new": "cd8540713f1664293bb78a10371ea54c650972356aeb8c283ffc2c7e9c60d0a1"
+  },
+  "site/decision-mission.html": {
+    "old": "b4634c5e25a40d4f5015d7e1e99985f6973faa123394e2e84e0659a05799af6b",
+    "new": "77115a6c26be32fae1bcfe61a1b345fd59c6277391a7c94f2e5ada9d242f623e"
+  },
+  "site/studio.js": {
+    "old": "1e6fa6821edcef61c76cce89908c8d527a9cd2e381541e7d9c96f48ea0123bc5",
+    "new": "ca74fc38470edf206425e0b61ac2a748655dc5b4b7f47621a3fa2c0cd870800b"
+  },
+  "site/evidence-workbench.js": {
+    "old": "76403ea3561d881cc129ddb9015bf9961a9ef3f0d8153b34f8bff9041e427410",
+    "new": "b5edc73ecf2095f2fb475c853006884c3331a999fb47ee5745108d7d76c3204b"
+  },
+  "tests/test_radar_investigation.py": {
+    "old": null,
+    "new": "2b4ef65fcfce8e92eecf42e4e052eadeef440a683a42ab8fcc042bca1e5c9552"
+  }
+}

@@ -1,0 +1,34 @@
+/* Human-facing decision tools: persistent alternatives and evidence-first copilot. */
+#askSwell{border-color:#2b9c91;background:#10312f;color:#d9fffa;font-weight:700;white-space:nowrap}
+#askSwell:hover{background:#17443f}
+#swellCopilot{width:min(620px,calc(100vw - 24px));max-width:620px;height:min(760px,calc(100vh - 24px));max-height:760px;margin:auto 12px 12px auto;padding:0;border:1px solid #315266;border-radius:18px;background:#071521;color:#e8f2f7;box-shadow:0 24px 80px #000b;overflow:hidden}
+#swellCopilot::backdrop{background:#020914b8;backdrop-filter:blur(3px)}
+.sc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #1b3546;background:#0a1d2c}
+.sc-head h2{font-size:17px;margin:0}.sc-head p{font-size:11px;color:#9db4c2;margin:3px 0 0}
+.sc-context{padding:9px 14px;background:#0a1a27;border-bottom:1px solid #1b3546;color:#a9c0ce;font-size:11px;line-height:1.5}
+.sc-quick{display:flex;gap:6px;flex-wrap:wrap;padding:9px 12px 0}.sc-quick button{font-size:11px;padding:5px 8px;border-radius:99px}
+.sc-messages{height:calc(100% - 225px);min-height:180px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.sc-msg{max-width:94%;border:1px solid #203c50;border-radius:12px;padding:10px 12px;line-height:1.5;font-size:12.5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.sc-msg.user{align-self:flex-end;background:#123c3c;border-color:#246b68}.sc-msg.assistant{align-self:flex-start;background:#0c2030}
+.sc-msg .sc-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#80d8d0;font-weight:700;margin-bottom:5px}
+.sc-msg .sc-warning{margin-top:7px;padding:7px;border-left:3px solid #d4a24b;background:#2a2113;color:#f3ddb1;border-radius:0 6px 6px 0;font-size:11px}
+.sc-msg .sc-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.sc-msg .sc-actions button{font-size:11px}
+.sc-msg .sc-sources{margin:8px 0 0;padding-left:17px}.sc-msg .sc-sources li{margin:4px 0}.sc-msg a{color:#86d8ef}
+.sc-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:10px 12px;border-top:1px solid #1b3546;background:#091b29}
+.sc-compose textarea{min-height:44px;max-height:110px;resize:vertical;background:#06121d;color:#e8f2f7;border:1px solid #315266;border-radius:9px;padding:9px;font:inherit;font-size:12px}
+.sc-compose button{align-self:stretch;min-width:82px}.sc-foot{padding:0 13px 10px;color:#8299a9;font-size:10px}
+#swellCopilot button,#swellShelf button{cursor:pointer}
+#swellCopilot button:disabled,#swellShelf button:disabled{opacity:.45;cursor:not-allowed}
+#swellShelf{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:14px;height:100%;min-height:170px}
+#swellShelf .ss-col{min-width:0;overflow:auto}#swellShelf h2{margin:0 0 6px;font-size:14px}
+#swellShelf input,#swellShelf textarea,#swellShelf select{width:100%;background:#071521;color:#e8f2f7;border:1px solid #28485a;border-radius:7px;padding:7px;font:inherit;font-size:12px}
+#swellShelf textarea{min-height:54px;resize:vertical}#swellShelf .ss-list{display:grid;gap:7px;margin-top:9px}
+#swellShelf .ss-item{border:1px solid #264254;background:#0a1b28;border-radius:9px;padding:9px;font-size:11px}
+#swellShelf .ss-item strong{font-size:12px}#swellShelf .ss-item .ss-meta{color:#94aab8;margin:3px 0 7px}
+#swellShelf .ss-actions{display:flex;gap:6px;flex-wrap:wrap}#swellShelf .ss-actions button{padding:5px 8px;font-size:10.5px}
+#swellShelf .ss-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0}
+#swellShelf .ss-metrics div{background:#081824;border:1px solid #203b4c;border-radius:7px;padding:7px}
+#swellShelf .ss-metrics b{display:block;font-size:15px}#swellShelf .ss-metrics span{font-size:10px;color:#95aab7}
+#swellShelf .ss-note{font-size:10px;color:#93a8b6;line-height:1.45}.ss-empty{border:1px dashed #345366;border-radius:8px;padding:12px;color:#9ab0be;font-size:11px}
+@media(max-width:900px){#swellShelf{grid-template-columns:1fr;overflow:auto}#swellCopilot{margin:auto 8px 8px auto;height:calc(100vh - 16px)}}
+@media(max-width:620px){#swellShelf{height:auto;min-height:0}#bottom{overflow:auto}#askSwell{padding:5px 7px;font-size:11px}.sc-messages{height:calc(100% - 235px)}}

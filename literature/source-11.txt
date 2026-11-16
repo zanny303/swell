@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Research summary: finite-volume unstructured shallow-water solver; real boundary inputs and mesh convergence needed for operational flood modeling.

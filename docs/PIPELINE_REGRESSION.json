@@ -1,0 +1,23 @@
+{
+  "original_count": 140,
+  "unchanged": 137,
+  "changed": [
+    "swell/run_swell.py",
+    "swell/site/site-twin.html",
+    "swell/site/site-twin.js"
+  ],
+  "removed": [],
+  "new": [
+    "swell/docs/PIPELINE_COMPLETION.md",
+    "swell/forecast_ensemble.py",
+    "swell/literature_rag.py",
+    "swell/model_products.py",
+    "swell/pipeline/templates/literature-corpus.json",
+    "swell/pipeline/templates/model-product.json",
+    "swell/radar_change.py",
+    "swell/tests/test_pipeline_completion.py"
+  ],
+  "pytest": "62 passed",
+  "javascript": "node --check site/site-twin.js passed",
+  "live_external_services": "not verified"
+}

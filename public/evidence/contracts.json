@@ -1,0 +1,326 @@
+[
+ {
+  "id": "DAL-Z56-d84",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z56",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..5",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -6.8 mm estimated vertical change (relative to first pass) by day 84",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 84,
+   "mean_mm": -6.759830785767084,
+   "band90_mm": 16.08867552285595
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "40b05669a6ae9600f0548c60fca2874c97fbdd6b851f8b4a21f1645b55cb89b6",
+  "observed_mm": -20.49787669230572
+ },
+ {
+  "id": "DAL-Z63-d84",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z63",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..5",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -6.0 mm estimated vertical change (relative to first pass) by day 84",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 84,
+   "mean_mm": -5.950410723368102,
+   "band90_mm": 16.08867552285595
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "943ad2b5392f29f6d1fce17d435b26bc91dfed8b39f41126bc57d2cc1ae035f9",
+  "observed_mm": -5.6018580096535775
+ },
+ {
+  "id": "DAL-Z57-d84",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z57",
+  "n_cells": 32,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..5",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -7.1 mm estimated vertical change (relative to first pass) by day 84",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 84,
+   "mean_mm": -7.08438202070488,
+   "band90_mm": 16.08867552285595
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "2c8637f0edac785b5a4bda89af9166d147db690ee52880acbbb9346ba6fa3fea",
+  "observed_mm": -18.54248953330928
+ },
+ {
+  "id": "DAL-Z60-d84",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z60",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..5",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -5.6 mm estimated vertical change (relative to first pass) by day 84",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 84,
+   "mean_mm": -5.568717592473454,
+   "band90_mm": 16.08867552285595
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "acc16728a5e0ec311c7f4345787d39ae670d42ad09e56ed94aacc8555dc8c169",
+  "observed_mm": 7.083373113504061
+ },
+ {
+  "id": "DAL-Z56-d96",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z56",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..6",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -8.0 mm estimated vertical change (relative to first pass) by day 96",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 96,
+   "mean_mm": -8.041039594549808,
+   "band90_mm": 17.973422489737725
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "f7a180b28f4bcf1b8e173bc4aa3b59874e694f697eb33222edff5c999b6d5156",
+  "observed_mm": 19.433900139326752
+ },
+ {
+  "id": "DAL-Z63-d96",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z63",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..6",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -7.0 mm estimated vertical change (relative to first pass) by day 96",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 96,
+   "mean_mm": -7.013424345636118,
+   "band90_mm": 17.973422489737725
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "a3b7c6979723937167cc45fce30e50520e60c68cdb105007265b4abf313974dd",
+  "observed_mm": 32.4578092680517
+ },
+ {
+  "id": "DAL-Z57-d96",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z57",
+  "n_cells": 32,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..6",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -8.4 mm estimated vertical change (relative to first pass) by day 96",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 96,
+   "mean_mm": -8.44533845909617,
+   "band90_mm": 17.973422489737725
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "d913840b4abef229d34291dffec02aba6ff54bd0d5df20a6ee4c98030fb0a380",
+  "observed_mm": 22.773041951762714
+ },
+ {
+  "id": "DAL-Z60-d96",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z60",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..6",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -6.5 mm estimated vertical change (relative to first pass) by day 96",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 96,
+   "mean_mm": -6.535496194549625,
+   "band90_mm": 17.973422489737725
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "a7863c25ccd5f8d02aac207e8b876fda65e8f14a9033e83475aeed2185717435",
+  "observed_mm": 37.09679356137647
+ },
+ {
+  "id": "DAL-Z56-d108",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z56",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..7",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -21.8 mm estimated vertical change (relative to first pass) by day 108",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 108,
+   "mean_mm": -21.827616767431554,
+   "band90_mm": 18.2718340782775
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "43dcfee288dc21d2b87440dbbfc084b6064551ef4c46dd8588f5b2eb60db73bf",
+  "observed_mm": -4.212707381152866
+ },
+ {
+  "id": "DAL-Z63-d108",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z63",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..7",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -19.2 mm estimated vertical change (relative to first pass) by day 108",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 108,
+   "mean_mm": -19.151828331782312,
+   "band90_mm": 18.2718340782775
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "supported",
+  "digest": "40cdcb562ecf7aeac7e54975da57c83db1aee0badb9f77e14344a6d89e0681b8",
+  "observed_mm": -7.184354128197642
+ },
+ {
+  "id": "DAL-Z57-d108",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z57",
+  "n_cells": 32,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..7",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -23.1 mm estimated vertical change (relative to first pass) by day 108",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 108,
+   "mean_mm": -23.112224816548103,
+   "band90_mm": 18.2718340782775
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "706f171cef05a2625de6405e18a0cb6f7ea86514a8adb824ee902d9af056ee97",
+  "observed_mm": -1.5900202146160745
+ },
+ {
+  "id": "DAL-Z60-d108",
+  "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)",
+  "stakeholder": "Municipal engineer",
+  "zone": "Z60",
+  "n_cells": 64,
+  "proposed_action": "Prioritise field inspection of drainage and pavement in this zone",
+  "evidence": [
+   "passes 1..7",
+   "soil map",
+   "rain record"
+  ],
+  "state": "Model expects -18.1 mm estimated vertical change (relative to first pass) by day 108",
+  "competing_explanation": "Moisture artifact removed using open low-clay ground; residual artifact possible",
+  "expected_observable": {
+   "day": 108,
+   "mean_mm": -18.11036189538565,
+   "band90_mm": 18.2718340782775
+  },
+  "model_version": "swell-0.1",
+  "safety": "Decision support only. Not a structural or safety certification. Needs review by a qualified professional.",
+  "approval": "PENDING (named human approval required)",
+  "made_at_utc": "2026-11-16T04:56:15+00:00",
+  "arrival": "contradicted",
+  "digest": "c01dab5a76c2be94d8988fa3718e66458c34c96e1b56704d281fe388582f4f55",
+  "observed_mm": 15.607616172129966
+ }
+]

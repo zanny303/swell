@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SWELL | Connections</title>
+<style>
+:root{--bg:#06111c;--card:#0c1b2a;--card2:#102438;--line:#1c3348;--ink:#e9f1f7;--mute:#8fa5b8;--green:#22c55e;--amber:#f2a33a;--bad:#ff6b6b;--teal:#2dd4bf}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+header b{font-size:19px;letter-spacing:.06em}header nav{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}a{color:#7cc4ff}
+main{max-width:1180px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:16px;margin:0 0 2px;display:flex;align-items:center;gap:10px}
+h2 i{font-style:normal;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--card2);border:1px solid var(--line);font-size:13px}
+h2 i.done{background:var(--green);color:#04130a;border-color:var(--green)}
+h3{font-size:11px;margin:14px 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.mute{color:var(--mute)}.small{font-size:12.5px}
+button,input,select{font:inherit;color:var(--ink);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:7px 11px}
+button{cursor:pointer}button.go{background:var(--green);border-color:var(--green);color:#04130a;font-weight:700}button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:8px}
+.row{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card2)}
+.dot{width:14px;height:14px;border-radius:50%;margin-top:3px;background:#3b5066}.ok .dot{background:var(--green)}.failed .dot{background:var(--bad)}.needs_key .dot,.no_data .dot,.not_tested .dot{background:var(--amber)}
+.row b{display:block}.row span{font-size:12.5px;color:var(--mute);display:block;overflow-wrap:anywhere}.row .d{color:var(--ink)}
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.keys label{display:grid;gap:4px;font-size:12.5px;color:var(--mute)}
+.keys input{width:100%}.set{color:var(--green);font-weight:600}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+pre{background:#040b13;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:10px 0 0;max-height:300px;overflow:auto;font:12px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.banner{padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card2)}.banner.good{border-color:var(--green)}.banner.warn{border-color:var(--amber)}
+</style>
+</head>
+<body>
+<header><b>≋ SWELL</b><span class="mute">Connections and real data</span>
+  <nav><a href="/">Home</a><a href="index.html">Decision Studio</a><a href="live.html">Earth observatory</a><a href="site-twin.html">Flood site twin</a><a href="worlds.html">Other worlds</a></nav></header>
+<main>
+  <div><h1>Connect once. Everything else follows.</h1>
+    <div class="mute">Connection tests confirm that providers respond. They do not mean their data are already loaded into the active study. You must discover compatible acquisitions and explicitly build the real site twin in steps 2–3.</div></div>
+  <div id="state" class="banner">Checking…</div>
+
+  <section class="card">
+    <h2><i id="n1">1</i>Connect the data sources</h2>
+    <div class="mute small">Public data sources need no key. A free NASA Earthdata login is needed to download authenticated NISAR radar products. AI providers are optional and independent of the science engine.</div>
+    <div class="bar"><label class="small mute">Test at latitude <input id="lat" value="32.7767" size="8"></label><label class="small mute">longitude <input id="lon" value="-96.7970" size="9"></label><button id="test" class="go">Test all connections</button><span id="tested" class="small mute"></span></div>
+    <h3>Needed for the real twin</h3><div class="grid" id="g-core"></div>
+    <h3>Your accounts</h3><div class="grid" id="g-account"></div>
+    <div class="keys" style="margin-top:12px">
+      <label>NASA Earthdata username <span id="k-EARTHDATA_USERNAME"></span><input id="EARTHDATA_USERNAME" autocomplete="off"></label>
+      <label>NASA Earthdata password (or use token below) <span id="k-EARTHDATA_PASSWORD"></span><input id="EARTHDATA_PASSWORD" type="password" autocomplete="new-password"></label>
+      <label>NASA Earthdata access token (alternative to username/password) <span id="k-EARTHDATA_TOKEN"></span><input id="EARTHDATA_TOKEN" type="password" autocomplete="new-password" placeholder="Paste Earthdata bearer token"></label>
+      <label>NASA FIRMS map key (optional) <span id="k-FIRMS_MAP_KEY"></span><input id="FIRMS_MAP_KEY" type="password" autocomplete="off"></label>
+      <label>Cesium ion token (optional) <span id="k-CESIUM_ION_TOKEN"></span><input id="CESIUM_ION_TOKEN" type="password" autocomplete="off"></label>
+      <label>SWELL AI provider <span id="k-SWELL_AI_PROVIDER"></span><select id="SWELL_AI_PROVIDER">
+        <option value="none">Evidence-only (no AI key)</option>
+        <option value="anthropic">Anthropic Claude</option>
+        <option value="openai">OpenAI</option>
+        <option value="meta">Meta Model API</option>
+        <option value="ollama">Ollama (local; no key)</option>
+        <option value="compatible">Other OpenAI-compatible endpoint</option>
+      </select></label>
+      <label>Provider API key (server-side only) <span id="k-SWELL_AI_API_KEY"></span><input id="SWELL_AI_API_KEY" type="password" autocomplete="new-password" placeholder="Paste the selected provider's key"></label>
+      <label>Provider base URL <span id="k-SWELL_AI_BASE_URL"></span><input id="SWELL_AI_BASE_URL" autocomplete="off" placeholder="Filled automatically for common providers"></label>
+      <label>Model ID <span id="k-SWELL_AI_MODEL"></span><input id="SWELL_AI_MODEL" list="aiModelList" autocomplete="off" placeholder="Load models or enter a model ID"><datalist id="aiModelList"></datalist></label>
+    </div>
+    <div class="bar"><button id="save">Save settings</button><button id="testAI">Test AI generation</button><button id="loadModels" type="button">Load available models</button><button id="clearAIKey" type="button">Clear saved AI key</button><span id="saved" class="small"></span></div>
+    <div class="small mute" style="margin-top:6px">Use one provider at a time. Supported: Anthropic Messages, OpenAI Chat Completions, Meta Model API (OpenAI-compatible), local Ollama, and other OpenAI-compatible services. Keys stay in this computer's local <code>.env</code> file and are never sent to the browser. Ollama can run locally without a key. No generative AI key is required for the scientific engine or evidence-only mode. The Cesium token is copied to this browser only as a restricted public read-only token; never use a private write token. Accounts: <a href="https://urs.earthdata.nasa.gov/users/new" target="_blank" rel="noopener">NASA Earthdata</a> · <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAI</a> · <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Anthropic</a> · <a href="https://dev.meta.ai/" target="_blank" rel="noopener">Meta Model API</a> · <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a></div>
+    <h3>Map and live layers</h3><div class="grid" id="g-map"></div>
+    <h3>Extra context (flood twin, forecasts)</h3><div class="grid" id="g-context"></div>
+  </section>
+
+  <section class="card">
+    <h2><i id="n2">2</i>Find the real radar passes over your place</h2>
+    <div class="mute small">Takes about a minute and downloads nothing large. It lists the actual NISAR passes and fetches rain, clay and paving for the box.</div>
+    <div class="bar"><select id="site"><option value="dallas">Dallas–Fort Worth, USA</option><option value="toulouse">Toulouse, France</option><option value="nagpur">Nagpur, India</option><option value="">Another place (use the latitude and longitude above)</option></select>
+      <input id="pname" placeholder="Name for another place" size="22"><button id="check" class="go">Find radar passes</button></div>
+    <div class="bar"><label class="small mute">From <input id="catalogStart" type="date" value="2025-08-01"></label><label class="small mute">To <input id="catalogEnd" type="date" value="2026-11-15"></label><button id="previewCatalog">Preview NASA CMR granules</button><span id="catalogStatus" class="small mute" aria-live="polite">Public metadata discovery; downloading HDF5 still requires Earthdata login.</span></div>
+    <div id="catalogResults" class="small" style="overflow:auto;max-height:300px"></div>
+  </section>
+
+  <section class="card">
+    <h2><i id="n3">3</i>Build the twin from that data</h2>
+    <div class="mute small">Reads only your site's window from each radar file online, then fits and tests the model. The twin is usually ready in several minutes and the Decision Studio link appears. It then adds five more satellites as evidence (GPM rain, SMAP soil moisture, Sentinel-1 motion, Landsat vegetation, open water), which can take 20 minutes more; each one is optional and reports if it could not run.</div>
+    <div class="bar"><button id="build" class="go">Build the real twin</button><button id="extras" title="Re-run only GPM, SMAP, Sentinel-1, Landsat and water on the site already built">Add the other satellites again</button><button id="study" title="Re-process the saved radar four ways (with and without NISAR's troposphere layers, local contrast, raw) and show every score side by side in Verify">Run the correction study</button><a id="open" href="index.html" hidden>Open the Decision Studio →</a></div>
+  </section>
+
+  <section class="card"><h2>Progress</h2><div id="jobState" class="small mute">No job has run yet.</div><pre id="log" hidden></pre></section>
+</main>
+<script>
+const $ = id => document.getElementById(id), esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const KEYS = ["EARTHDATA_USERNAME", "EARTHDATA_PASSWORD", "EARTHDATA_TOKEN", "FIRMS_MAP_KEY", "CESIUM_ION_TOKEN", "SWELL_AI_PROVIDER", "SWELL_AI_API_KEY", "SWELL_AI_BASE_URL", "SWELL_AI_MODEL"], ION = "swell.cesiumIonToken.v1";
+let ready = false, poll = null;
+const api = async (url, body) => { const r = await fetch(url, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {}); const d = await r.json(); if (!r.ok) throw new Error(d.error || "request failed"); return d; };
+function show(d) {
+  ["core", "account", "map", "context"].forEach(g => $("g-" + g).innerHTML = d.results.filter(r => r.group === g).map(r => `<div class="row ${r.status}"><div class="dot"></div><div><b>${esc(r.name)}</b><span>${esc(r.use)}</span><span class="d">${r.status === "ok" ? "" : r.status === "needs_key" ? "Not connected: " : r.status === "no_data" ? "No matching data: " : r.status === "not_tested" ? "Configured, not live-tested: " : "Problem: "}${esc(r.detail)}</span></div></div>`).join(""));
+  KEYS.forEach(k => $("k-" + k).innerHTML = d.keys_set[k] ? '<span class="set">· saved</span>' : "");
+  ready = d.ready_for_real_twin; $("n1").className = ready ? "done" : ""; $("tested").textContent = "Tested " + new Date(d.checked_utc).toLocaleTimeString();
+  banner(d.next_step, ready);
+}
+function banner(text, good) { const s = $("state"); s.className = "banner " + (good ? "good" : "warn"); s.textContent = text; }
+async function test() { $("test").disabled = true; $("tested").textContent = "Testing… (up to 40 seconds)";
+  try { show(await api(`/api/connections?lat=${encodeURIComponent($("lat").value)}&lon=${encodeURIComponent($("lon").value)}`)); } catch (e) { banner("Could not run the tests: " + e.message + ". Is SWELL started with python run_swell.py?", false); $("tested").textContent = ""; }
+  $("test").disabled = false; }
+$("test").onclick = test;
+const AI_PRESETS = {
+  none: ["", ""], anthropic: ["https://api.anthropic.com", "claude-sonnet-5"],
+  openai: ["https://api.openai.com/v1", "gpt-6-astra"],
+  meta: ["https://api.meta.ai/v1", "muse-spark-1.3"],
+  ollama: ["http://127.0.0.1:11434/v1", "llama3.2"],
+  compatible: ["", ""]
+};
+let clearAiKey = false, savedProvider = "none";
+$("SWELL_AI_PROVIDER").addEventListener("change", () => {
+  if (savedProvider && $("SWELL_AI_PROVIDER").value !== savedProvider) {
+    clearAiKey = true; $("SWELL_AI_API_KEY").value = "";
+    $("SWELL_AI_API_KEY").placeholder = "Provider changed: enter a key for this provider, or use local Ollama";
+  }
+  const preset = AI_PRESETS[$("SWELL_AI_PROVIDER").value] || ["", ""];
+  $("SWELL_AI_BASE_URL").value = preset[0];
+  $("SWELL_AI_MODEL").value = preset[1];
+  $("SWELL_AI_API_KEY").placeholder = $("SWELL_AI_PROVIDER").value === "ollama" ? "Not required for local Ollama" : "Paste the selected provider's key";
+});
+$("clearAIKey").onclick = () => { clearAiKey = true; $("SWELL_AI_API_KEY").value = ""; $("SWELL_AI_API_KEY").placeholder = "Saved AI key will be removed when you save"; $("saved").textContent = "AI key marked for removal. Click Save settings."; };
+$("save").onclick = async () => {
+  const body = {};
+  ["EARTHDATA_USERNAME","EARTHDATA_PASSWORD","EARTHDATA_TOKEN","FIRMS_MAP_KEY","CESIUM_ION_TOKEN"].forEach(k=>{const v=$(k).value.trim();if(v)body[k]=v;});
+  body.SWELL_AI_PROVIDER=$("SWELL_AI_PROVIDER").value;
+  body.SWELL_AI_BASE_URL=$("SWELL_AI_BASE_URL").value.trim();
+  body.SWELL_AI_MODEL=$("SWELL_AI_MODEL").value.trim();
+  const apiKey=$("SWELL_AI_API_KEY").value.trim();
+  if(apiKey) body.SWELL_AI_API_KEY=apiKey; else if(clearAiKey) body.SWELL_AI_API_KEY="";
+  try { const d = await api("/api/connections/keys", body); if (body.CESIUM_ION_TOKEN) { try { localStorage.setItem(ION, body.CESIUM_ION_TOKEN); } catch (_) { } }
+    KEYS.filter(k => !["SWELL_AI_PROVIDER","SWELL_AI_BASE_URL","SWELL_AI_MODEL"].includes(k)).forEach(k => $(k).value = "");
+    $("SWELL_AI_API_KEY").value=""; clearAiKey=false;
+    $("saved").textContent = "Saved: " + d.saved.length + " setting(s). Testing data connections…"; await test(); await loadAISettings();
+    $("saved").textContent = "Settings saved. Use Test AI generation for an end-to-end model test.";
+  } catch (e) { $("saved").textContent = "Not saved: " + e.message; } };
+$("loadModels").onclick = async () => {
+  $("loadModels").disabled = true; $("saved").textContent = "Loading model catalogue…";
+  try {
+    const d = await api("/api/ai/models");
+    $("aiModelList").replaceChildren(...(d.models||[]).map(id=>{const o=document.createElement("option");o.value=id;return o;}));
+    if (!$("SWELL_AI_MODEL").value && d.models?.length) $("SWELL_AI_MODEL").value=d.models[0];
+    $("saved").textContent = `${d.models?.length||0} model(s) found for ${d.provider}. Choose one, then save settings.`;
+  } catch (e) { $("saved").textContent = "Could not load model list: " + e.message + ". You can still enter the model ID manually."; }
+  finally { $("loadModels").disabled = false; }
+};
+$("testAI").onclick = async () => {
+  $("testAI").disabled = true; $("saved").textContent = "Testing live AI generation…";
+  try {
+    const d = await api("/api/ai/test", {});
+    $("saved").textContent = `AI works: ${d.provider} · ${d.model} · ${d.reply}`;
+    const row=[...document.querySelectorAll("#g-account .row")].find(x=>x.querySelector("b")?.textContent==="SWELL AI provider");
+    if(row){row.className="row ok";const detail=row.querySelector(".d");if(detail)detail.textContent=`Live generation verified at ${d.tested_at_utc}.`;}
+  }
+  catch (e) {
+    $("saved").textContent = "AI test failed: " + e.message;
+    const row=[...document.querySelectorAll("#g-account .row")].find(x=>x.querySelector("b")?.textContent==="SWELL AI provider");
+    if(row){row.className="row failed";const detail=row.querySelector(".d");if(detail)detail.textContent=e.message;}
+  }
+  finally { $("testAI").disabled = false; }
+};
+async function loadAISettings() {
+  try { const d = await api("/api/ai/status"); $("SWELL_AI_PROVIDER").value = d.provider || "none"; savedProvider = d.provider || "none";
+    if (d.base_url) $("SWELL_AI_BASE_URL").value = d.base_url;
+    if (d.model) $("SWELL_AI_MODEL").value = d.model;
+    $("SWELL_AI_API_KEY").placeholder = d.key_present ? "A key is saved on this computer; leave blank to keep it" : (d.provider === "ollama" ? "Not required for local Ollama" : "Paste the selected provider's key");
+  } catch (_) {}
+}
+function place() { const s = $("site").value; if (s) return { site: s }; const lat = +$("lat").value, lon = +$("lon").value; if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error("Enter a latitude and longitude in step 1");
+  return { bbox: [lon - .25, lat - .2, lon + .25, lat + .2], name: $("pname").value.trim() || `Site ${lat.toFixed(2)}, ${lon.toFixed(2)}` }; }
+async function job(mode) { try { await api("/api/real-site", { mode, ...place() }); watch(); } catch (e) { $("jobState").textContent = "Could not start: " + e.message; } }
+$("check").onclick = () => job("check"); $("extras").onclick = () => job("extras");
+$("study").onclick = async () => { try { await api("/api/real-site", { mode: "study" }); watch(); } catch (e) { $("jobState").textContent = "Could not start: " + e.message; } };
+$("previewCatalog").onclick = async () => {
+  const out=$("catalogResults"), status=$("catalogStatus"); out.replaceChildren(); status.textContent="Querying NASA CMR…";
+  try {
+    const p=place(), params=new URLSearchParams({start:$("catalogStart").value||"2025-08-01",end:$("catalogEnd").value||"2026-11-15",limit:"30"});
+    if(p.site)params.set("site",p.site);else{params.set("west",p.bbox[0]);params.set("south",p.bbox[1]);params.set("east",p.bbox[2]);params.set("north",p.bbox[3]);}
+    const d=await api("/api/nasa/nisar-catalog?"+params.toString());
+    status.textContent="CMR hits · "+Object.entries(d.total_hits_by_maturity||{}).map(([k,v])=>k+": "+(v??"unavailable")).join(" · ")+" · returned "+(d.records||[]).length+" sample records";
+    const note=document.createElement("p");note.textContent=d.warning;note.className="mute";out.append(note);
+    const table=document.createElement("table");table.style.width="100%";table.style.borderCollapse="collapse";table.innerHTML="<thead><tr><th align=left>Acquisition / granule</th><th>Maturity</th><th>Start → end</th><th>Track / frame</th><th>Asset</th></tr></thead>";
+    const body=document.createElement("tbody");
+    for(const x of d.records||[]){const tr=document.createElement("tr");tr.style.borderTop="1px solid var(--line)";
+      const name=document.createElement("td");name.textContent=x.granule_id||x.id||"Granule";name.style.padding="5px";tr.append(name);
+      const mat=document.createElement("td");mat.textContent=x.maturity;tr.append(mat);
+      const dates=document.createElement("td");dates.textContent=(x.time_start||"?")+" → "+(x.time_end||"?");tr.append(dates);
+      const tf=document.createElement("td");tf.textContent=(x.track||"?")+" / "+(x.frame||"?");tr.append(tf);
+      const asset=document.createElement("td");if(x.hdf5_url){const a=document.createElement("a");a.href=x.hdf5_url;a.target="_blank";a.rel="noopener";a.textContent="HDF5 link";asset.append(a);}else asset.textContent="Login / ASF search";tr.append(asset);body.append(tr);
+    }
+    table.append(body);out.append(table);
+    if(d.errors?.length){const er=document.createElement("pre");er.textContent=JSON.stringify(d.errors,null,2);out.append(er);}
+  } catch(e){status.textContent="Catalog query failed: "+e.message;}
+};
+$("build").onclick = () => { if (!ready && !confirm("Step 1 is not fully green yet. Try anyway?")) return; job("build"); };
+async function status() { const d = await api("/api/real-site/status"); const run = d.state === "running";
+  $("check").disabled = $("build").disabled = $("extras").disabled = run; if (d.log.length) { $("log").hidden = false; $("log").textContent = d.log.join("\n"); $("log").scrollTop = 1e9; }
+  const what = d.mode === "build" ? "Building the twin" : d.mode === "extras" ? "Adding other satellites" : "Finding radar passes";
+  $("jobState").textContent = d.state === "idle" ? "No job has run yet." : run ? what + "… started " + new Date(d.started).toLocaleTimeString() : d.state === "done" ? what + ": finished." : what + ": stopped with a problem. The last lines below say why; the full log is in out/real_site_log.txt.";
+  if (d.mode === "check" && d.state === "done") $("n2").className = "done";
+  $("open").hidden = !d.real_site_loaded; if (d.real_site_loaded) { $("n3").className = "done"; $("n2").className = "done"; banner("A real site is loaded: " + d.real_site_name + ". Open the Decision Studio.", true); }
+  return run; }
+function watch() { clearInterval(poll); poll = setInterval(async () => { try { if (!(await status())) clearInterval(poll); } catch (_) { } }, 1500); status(); }
+loadAISettings(); test(); status().then(run => run && watch()).catch(() => { });
+</script>
+</body>
+</html>

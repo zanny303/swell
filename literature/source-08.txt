@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Research summary: PDE soft constraints do not guarantee physical accuracy; optimization can become ill-conditioned. Curriculum regularization and sequential learning were investigated. Require independent conservation and observation benchmarks before operational PINN use.

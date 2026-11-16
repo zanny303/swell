@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08111b">
+<meta name="description" content="SWELL Earth intelligence: observe surface change, investigate physical drivers, explore scenarios and verify actions.">
+<title>SWELL classic view</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#07101a;--panel:rgba(10,19,30,.91);--panel2:#101d2b;--line:rgba(153,180,204,.16);--line2:rgba(153,180,204,.27);--ink:#eaf1f6;--muted:#91a3b4;--dim:#65798b;--gold:#e2a566;--blue:#63b6ef;--green:#61d1ae;--amber:#efb46e;--violet:#c2a2ff;--red:#ff8a7c;--shadow:0 18px 60px rgba(0,0,0,.32)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font:13px/1.45 'DM Sans',system-ui,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}#globe{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 48%,#173047,#07101a 70%);z-index:0}.cesium-viewer,.cesium-widget,.cesium-widget canvas{width:100%;height:100%}.cesium-viewer-bottom{display:none}
+.app-shell{position:relative;width:100%;height:100%;isolation:isolate;pointer-events:none}.app-shell>*{pointer-events:auto}.glass{background:var(--panel);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--line);box-shadow:var(--shadow)}
+#top{position:absolute;top:14px;left:16px;right:16px;min-height:66px;border-radius:14px;display:flex;align-items:center;gap:15px;padding:10px 15px;z-index:10}.brand{display:flex;align-items:center;gap:11px;min-width:225px}.brand-mark{width:39px;height:39px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#e7b477,#95643b);color:#17212a;box-shadow:0 5px 20px #c28a4d44}.brand-mark svg{width:23px;height:23px}.brand-name{font:800 16px Manrope;letter-spacing:.16em}.brand-sub{font:9px 'DM Mono';letter-spacing:.12em;color:var(--muted);margin-top:2px}.top-divider{height:32px;width:1px;background:var(--line);flex-shrink:0}.top-context{min-width:130px}.top-context strong{font:600 12px Manrope;display:block}.top-context small{font:9px 'DM Mono';color:var(--muted)}.top-spacer{flex:1}.source-chip,.micro-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);border-radius:999px;padding:6px 10px;color:#c2d0dc;font:9px 'DM Mono';white-space:nowrap}.source-chip{border-color:#785c3e;color:#e8bd8b;background:#2b2118}.source-chip:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px currentColor}.top-control{display:flex;align-items:center;gap:7px}.top-control select,.top-control button,.tool-button{background:#142232;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;color:#dce6ed;font-size:11px}.top-control button:hover,.tool-button:hover{border-color:#b88c5c;color:#f0c18c}.top-control select{max-width:145px}.layer-toggle{display:flex;align-items:center;gap:6px;color:#b9c7d2;font-size:10px;white-space:nowrap}.layer-toggle input{accent-color:var(--gold);width:13px;height:13px}.header-actions{display:flex;gap:7px;align-items:center}.icon-button{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:9px;background:#142232;color:#c4d2de}.icon-button svg{width:16px;height:16px}
+#map-rail{position:absolute;top:105px;left:17px;z-index:4;display:flex;flex-direction:column;gap:7px}.rail-btn{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:#c5d2dc;backdrop-filter:blur(14px);box-shadow:0 7px 25px #0004}.rail-btn:hover{color:var(--gold);border-color:#b88c5c}.rail-btn svg{width:17px;height:17px}.rail-sep{height:1px;background:var(--line);margin:3px 5px}
+#map-hud{position:absolute;left:75px;top:103px;z-index:3;display:flex;flex-direction:column;gap:8px;max-width:310px;pointer-events:none}.hud-card{background:rgba(8,17,27,.72);border:1px solid var(--line);border-radius:10px;padding:9px 12px;backdrop-filter:blur(12px)}.hud-kicker{font:9px 'DM Mono';letter-spacing:.12em;color:var(--gold)}.hud-title{font:600 13px Manrope;margin-top:3px}.hud-sub{font:10px 'DM Mono';color:var(--muted);margin-top:2px}.hud-stats{display:flex;gap:7px}.hud-stat{background:rgba(8,17,27,.72);border:1px solid var(--line);border-radius:9px;padding:8px 10px;min-width:78px}.hud-stat b{display:block;font:700 16px Manrope}.hud-stat span{display:block;color:var(--muted);font:8px 'DM Mono';margin-top:2px}
+#drawer{position:absolute;top:96px;right:16px;bottom:120px;width:min(430px,calc(100vw - 100px));border-radius:15px;display:flex;flex-direction:column;overflow:hidden;z-index:8;transition:transform .28s ease,opacity .28s ease}.drawer-head{padding:17px 17px 12px;border-bottom:1px solid var(--line);flex-shrink:0}.drawer-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.drawer-eyebrow{font:9px 'DM Mono';letter-spacing:.15em;color:var(--gold)}.drawer-title{font:700 18px Manrope;letter-spacing:-.03em;margin-top:4px}.drawer-desc{font-size:10px;color:var(--muted);margin-top:3px}.drawer-close{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);width:29px;height:29px;display:grid;place-items:center}.drawer-close svg{width:14px}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:13px}.tabs button{min-width:0;background:#101d2a;border:1px solid transparent;border-radius:7px;padding:8px 4px;color:#91a2b2;font-size:9px;white-space:nowrap}.tabs button:hover{background:#172738;color:#dbe6ee}.tabs button.on{background:#2a241d;border-color:#87633e;color:#f0bd83}.tabs button:focus-visible,.tool-button:focus-visible,.rail-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.drawer-body{padding:15px 17px 20px;overflow:auto;min-height:0;scrollbar-width:thin;scrollbar-color:#42566a transparent}.drawer-body h2{font:600 10px 'DM Mono';letter-spacing:.13em;color:#9eb0bf;text-transform:uppercase;margin:17px 0 8px}.drawer-body h2:first-child{margin-top:0}.drawer-body .note{font-size:10px;line-height:1.55;color:var(--muted)}.drawer-body table{width:100%;border-collapse:collapse;font-size:10px}.drawer-body th{text-align:left;color:#8295a6;font:9px 'DM Mono';padding:7px 5px;border-bottom:1px solid var(--line2)}.drawer-body td{padding:7px 5px;border-bottom:1px solid var(--line);color:#c5d0d9}.drawer-body tr:hover td{background:#ffffff08}.drawer-body ol{padding-left:18px;color:#c2ced8;font-size:11px;line-height:1.7}.drawer-body select,.drawer-body input[type=number],.drawer-body input[type=file],.drawer-body textarea{background:#111e2b;border:1px solid var(--line2);border-radius:7px;padding:8px;color:#dce6ee}.drawer-body button{background:#192a3a;border:1px solid var(--line2);border-radius:7px;padding:8px 11px;color:#dce6ee;font-size:10px}.drawer-body button:hover{border-color:#bb8b56;color:#efc08c}.drawer-body input[type=range]{accent-color:var(--gold);width:100%;margin:7px 0 12px}.drawer-body label{font-size:10px;color:#9cabb8}.drawer-body canvas{max-width:100%;height:auto}.drawer-body .ok{color:var(--green)}.drawer-body .bad{color:var(--red)}.drawer-body .na{color:#9aa8b5}.drawer-body .note b{color:#e1e9ef}.drawer-body [hidden]{display:none!important}
+#bottom{position:absolute;left:75px;right:462px;bottom:16px;border-radius:13px;padding:11px 14px;z-index:7}.timeline-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.timeline-label{font:9px 'DM Mono';letter-spacing:.13em;color:#91a5b6}.states{display:flex;gap:5px;align-items:center}.states button{background:#101d2a;border:1px solid var(--line);border-radius:7px;padding:6px 10px;color:#9aabba;font-size:10px}.states button.on{background:#192a3a;border-color:#7c93a6;color:#eaf2f7}.states button[data-s=observed].on{border-color:var(--blue);color:var(--blue)}.states button[data-s=inferred].on{border-color:var(--green);color:var(--green)}.states button[data-s=forecast].on{border-color:var(--amber);color:var(--amber)}.states button[data-s=scenario].on{border-color:var(--violet);color:var(--violet)}#stateNote{flex:1;min-width:100px;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#when{font:9px 'DM Mono';color:#d9b486;white-space:nowrap}.timeline-control{display:flex;align-items:center;gap:10px}.timeline-control input{flex:1;accent-color:var(--gold);width:100%;margin:0}.timeline-control button{background:#182738;border:1px solid var(--line2);border-radius:7px;padding:6px 11px;color:#e5edf3;font-size:10px}.timeline-foot{display:flex;justify-content:space-between;color:#74899a;font:8px 'DM Mono';margin-top:5px}
+#map-legend{position:absolute;left:75px;bottom:112px;display:flex;gap:13px;align-items:center;background:rgba(8,17,27,.78);border:1px solid var(--line);border-radius:9px;padding:8px 11px;z-index:3;backdrop-filter:blur(12px);font:9px 'DM Mono';color:#adbdc9}.legend-item{display:flex;align-items:center;gap:6px}.legend-dot{width:7px;height:7px;border-radius:50%}.dot-blue{background:var(--blue)}.dot-green{background:var(--green)}.dot-amber{background:var(--amber)}.dot-violet{background:var(--violet)}.legend-scale{color:#7d91a3;border-left:1px solid var(--line);padding-left:10px}
+#feed-pill{position:absolute;left:75px;bottom:72px;z-index:3;background:rgba(8,17,27,.76);border:1px solid var(--line);border-radius:8px;padding:6px 9px;color:#91a4b5;font:8px 'DM Mono';backdrop-filter:blur(12px)}#feed-pill .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:6px;box-shadow:0 0 9px #61d1ae}
+#src{font:9px 'DM Mono';border:1px solid #785c3e;color:#e8bd8b;background:#2b2118;border-radius:999px;padding:6px 9px;white-space:nowrap}#exag{font:8px 'DM Mono';color:#90a2b1;border:1px solid var(--line);border-radius:999px;padding:5px 8px;white-space:nowrap}
+#tab-structures .row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin:8px 0}#tab-structures .row label{flex:1;min-width:120px}#tab-structures .row input,#tab-structures .row select{width:100%;margin-top:4px}#tab-structures .note{margin:8px 0}#tab-lab .row{display:flex;align-items:center;gap:8px}#tab-lab label output{float:right;color:#e3b37c;font:10px 'DM Mono'}
+
+.research-banner{display:flex;flex-direction:column;gap:5px;padding:12px;border:1px solid #655039;background:linear-gradient(120deg,#2b2118,#172333);border-radius:9px;margin-bottom:13px}.research-kicker{font:9px 'DM Mono';letter-spacing:.12em;color:var(--gold)}.research-banner b{font:600 13px Manrope}.research-banner small{font:9px 'DM Mono';color:var(--muted)}.hypothesis-grid{display:grid;grid-template-columns:1fr;gap:7px}.hypothesis-card{border:1px solid var(--line2);background:#101d2a;border-radius:8px;padding:10px}.hypothesis-card.best{border-color:#5a987f;background:#10251f}.hypothesis-card .hyp-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.hypothesis-card b{font:600 11px Manrope}.hypothesis-card strong{font:700 17px Manrope}.hypothesis-card small{display:block;color:var(--muted);font:9px 'DM Mono';margin-top:4px}.copilot-prompts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.copilot-prompts button{font-size:9px;padding:6px 8px}.research-answer{margin:11px 0;padding:12px;background:#101d2a;border:1px solid var(--line2);border-radius:8px;font-size:11px;line-height:1.65;color:#d2dde6}.research-answer b{color:#f0c18c}.research-answer .answer-limits{color:#e3b37c;font-size:10px;margin-top:8px}.research-answer .answer-refs{color:#8fbbe0;font:9px 'DM Mono';margin-top:8px}.research-note{font-size:9px;color:var(--muted);line-height:1.5;margin:7px 0}
+.tabs{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:820px){.tabs{grid-template-columns:repeat(5,minmax(0,1fr))}.tabs button{font-size:7px;padding:7px 1px}}
+.drawer-hidden #drawer{transform:translateX(calc(100% + 30px));opacity:0;pointer-events:none}body.drawer-hidden #bottom{right:16px}body.drawer-hidden #map-legend,body.drawer-hidden #feed-pill{right:auto}
+#quakeCount{color:var(--red)}.status-good{color:var(--green)}.status-warn{color:var(--amber)}.status-bad{color:var(--red)}
+@media(max-width:1100px){.brand{min-width:180px}.top-context{display:none}.top-divider{display:none}#drawer{width:390px}#bottom{right:420px}.layer-toggle{font-size:9px}}
+@media(max-width:820px){html,body{overflow:hidden}.coordinate-control{display:none!important}#top{top:8px;left:8px;right:8px;min-height:58px;padding:8px 10px;gap:8px}.brand{min-width:0}.brand-mark{width:34px;height:34px}.brand-name{font-size:14px}.brand-sub{font-size:8px}.top-control .layer-toggle{display:none}.top-control select{max-width:100px;padding:7px 6px}#src{font-size:8px;padding:5px 7px}#exag{display:none}#map-rail{top:78px;left:8px}.rail-btn{width:36px;height:36px}#map-hud{top:80px;left:53px}.hud-stats{display:none}#drawer{top:auto;left:8px;right:8px;bottom:8px;width:auto;height:min(54vh,490px);max-height:65vh;border-radius:14px}.drawer-head{padding:11px 13px 9px}.drawer-title{font-size:15px}.drawer-desc{display:none}.tabs{margin-top:9px;grid-template-columns:repeat(4,1fr)}.tabs button{padding:7px 2px;font-size:8px}.drawer-body{padding:11px 13px}#bottom{left:8px;right:8px;bottom:calc(min(54vh,490px) + 17px);padding:8px 10px}.drawer-hidden #bottom{bottom:8px}#map-legend{left:53px;bottom:calc(min(54vh,490px) + 102px);padding:6px 8px;gap:8px;font-size:8px}.drawer-hidden #map-legend{bottom:65px}#feed-pill{left:53px;bottom:calc(min(54vh,490px) + 66px)}.drawer-hidden #feed-pill{bottom:38px}.timeline-label{display:none}.states{gap:3px}.states button{padding:5px 7px;font-size:9px}#stateNote{display:none}#when{font-size:8px}.timeline-control{gap:7px}}
+@media(max-width:480px){.brand-sub{display:none}.brand-mark{display:none}.brand-name{font-size:13px}.header-actions .icon-button{width:30px;height:30px}.top-control select{max-width:86px;font-size:9px}.top-control button{font-size:8px;padding:6px 5px;white-space:nowrap}.source-chip{display:none}.hud-card{padding:7px 9px}.hud-title{font-size:11px}.hud-sub{font-size:8px}.tabs button{font-size:7px}.states button{padding:5px 5px;font-size:8px}.drawer-head{padding:9px 10px 7px}}
+
+/* SWELL Earth-first interface refresh */
+#earth-panel{position:absolute;left:75px;top:236px;width:276px;border-radius:13px;padding:13px 14px;z-index:4;backdrop-filter:blur(18px);background:rgba(7,17,27,.88)}
+.earth-panel-head{display:flex;align-items:center;justify-content:space-between;font:9px 'DM Mono';letter-spacing:.13em;color:#b5c6d4}
+.earth-live{color:#72d8b4;font-size:8px;letter-spacing:.08em}.earth-live i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#61d1ae;margin-right:5px;box-shadow:0 0 9px #61d1ae}
+.earth-panel-title{font:600 13px Manrope;margin:10px 0 9px}
+.place-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.place-buttons button{border:1px solid var(--line2);background:#142536;border-radius:8px;padding:8px 5px;text-align:left;color:#e8f0f6}
+.place-buttons button b{display:block;font:700 11px Manrope;color:#e6b77f}
+.place-buttons button span{display:block;font:8px 'DM Mono';color:#a7b6c3;margin-top:3px}
+.place-buttons button:hover,.place-buttons button.active{border-color:#d8a56d;background:#2a241e}
+.earth-source-row{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--line)}
+.earth-source-row span:last-child{min-width:0}
+.earth-source-row b{display:block;font:600 10px Manrope}
+.earth-source-row small{display:block;font:8px 'DM Mono';color:#9cabb9;margin-top:2px;white-space:normal}
+.source-square{width:8px;height:8px;border-radius:2px;flex:none}.source-square.nasa{background:#67b9ee}.source-square.usgs{background:#ef8178}.source-square.twin{background:#c2a2ff}
+.earth-panel-foot{font-size:9px;color:#91a3b3;line-height:1.5;padding-top:9px}
+#top{gap:11px}
+#top .brand{min-width:185px}
+#top .top-context{min-width:115px}
+#top #imagerySource{max-width:170px}
+#drawer .tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+#drawer .tabs button{font-size:10px;padding:8px 5px}
+#tab-people .research-banner{margin-bottom:12px}
+#tab-people #who{width:100%;min-height:38px;font-weight:600}
+#tab-people #plan{margin-top:12px}
+#tab-people #plan .note{font-size:11px;line-height:1.65}
+#tab-people #plan ol{padding-left:19px;font-size:11px;line-height:1.8}
+#tab-people #plan a{display:inline-flex;margin:4px 5px 4px 0;padding:7px 9px;border:1px solid var(--line2);border-radius:7px;background:#132536;font:9px 'DM Mono'}
+#tab-people #plan h2{margin-top:16px}
+#tab-people #plan table{font-size:9px}
+#tab-people #plan td,#tab-people #plan th{padding:7px 4px}
+@media(max-width:1150px){
+ #top .top-context,#exag{display:none}
+ #top .brand{min-width:145px}
+ #top #imagerySource{max-width:135px}
+ #earth-panel{width:245px}
+}
+@media(max-width:760px){
+ #earth-panel{display:none}
+ #top{left:7px;right:7px;top:7px;padding:8px;gap:6px}
+ #top .brand{min-width:auto}
+ #top .brand-sub{display:none}
+ #top .brand-name{font-size:13px}
+ #top #imagerySource{max-width:115px}
+ #top .coordinate-control input{width:78px!important}
+ #drawer{left:8px;right:8px;top:88px;bottom:100px;width:auto}
+ #bottom{left:8px;right:8px;bottom:8px}
+ #map-hud{left:58px;top:91px;max-width:220px}
+ #map-legend{left:8px;bottom:92px;max-width:calc(100vw - 16px);flex-wrap:wrap}
+ #feed-pill{left:8px;bottom:58px}
+}
+
+/* Decision studio: evidence-to-action workspace */
+.tabs{flex-wrap:wrap}.tabs button{font-size:9px;padding:7px 9px}
+.decision-hero{padding:13px;border:1px solid #345166;background:linear-gradient(135deg,#102b3b,#101c2a 65%,#28241e);border-radius:12px;margin-bottom:13px}
+.decision-hero .eyebrow{font:9px 'DM Mono';letter-spacing:.15em;color:#7bc9e6}
+.decision-hero h2{font:700 21px Manrope;margin:5px 0}
+.decision-hero p{font-size:11px;color:#b2c2ce;margin:0}
+.decision-integrity{display:flex;gap:9px;margin-top:12px;padding:9px;background:#332719;border:1px solid #735633;border-radius:8px;color:#f0c18b;font-size:10px}
+.decision-integrity b{white-space:nowrap;font:10px 'DM Mono'}
+.decision-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+.decision-controls label,.decision-sliders label{display:flex;flex-direction:column;gap:6px;font-size:10px;color:var(--muted)}
+.decision-controls select{width:100%;padding:10px;border:1px solid var(--line2);border-radius:8px;background:#142536;color:var(--ink)}
+.decision-location{border:1px solid var(--line);border-radius:8px;padding:9px;background:#0b1927;display:flex;flex-direction:column;gap:4px;min-width:0}
+.decision-location span{font:9px 'DM Mono';color:var(--gold)}
+.decision-location b{font-size:11px;overflow-wrap:anywhere}.decision-location small{font-size:9px;color:var(--muted)}
+.decision-section-title{font:700 13px Manrope;margin:18px 0 5px}
+.decision-help{font-size:10px;color:var(--muted);margin:0 0 10px}
+.decision-sliders{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1927}
+.decision-sliders label span{display:flex;justify-content:space-between;gap:5px}.decision-sliders label b{color:#e6bd8d;font:10px 'DM Mono'}
+.decision-sliders input{width:100%;accent-color:#61c7d9}
+.decision-actions{display:flex;gap:8px;margin:11px 0}
+.decision-actions button,.decision-download{border:1px solid var(--line2);border-radius:8px;padding:9px 12px;background:#142638;color:var(--ink);font-size:10px}
+.decision-actions .primary-action{background:#17465a;border-color:#327c93;color:#e2f7ff;font-weight:700}
+.decision-results{display:grid;gap:9px}
+.decision-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.decision-metric{padding:10px;border:1px solid var(--line);border-radius:9px;background:#0c1c2a;min-width:0}
+.decision-metric strong{display:block;font:700 18px Manrope;color:#e8bd8a;overflow-wrap:anywhere}
+.decision-metric span{font-size:9px;color:var(--muted)}
+.decision-card{padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1927}
+.decision-card h4{font:700 12px Manrope;margin:0 0 7px;color:#d9e8f2}
+.decision-card p,.decision-card li{font-size:10px;color:#b7c6d1;line-height:1.55}
+.decision-card ul{padding-left:17px;margin:6px 0}
+.decision-card .decision-status{font:9px 'DM Mono';color:#e6b97e;letter-spacing:.08em}
+.decision-compare{width:100%;border-collapse:collapse;font-size:10px}.decision-compare td,.decision-compare th{padding:7px;border-bottom:1px solid var(--line);text-align:left}.decision-compare th{color:var(--muted);font-weight:500}
+.decision-files{display:grid;gap:7px;margin-bottom:20px}
+.decision-file{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px;border:1px solid var(--line);border-radius:8px;background:#0b1927}
+.decision-file b{font-size:10px}.decision-file small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.decision-download{white-space:nowrap;color:#8bd5ed}
+.decision-empty{padding:13px;border:1px dashed var(--line2);border-radius:9px;color:var(--muted);font-size:10px}
+@media(max-width:820px){.decision-controls,.decision-sliders{grid-template-columns:1fr}.decision-metrics{grid-template-columns:1fr 1fr}.decision-integrity{flex-direction:column;gap:4px}}
+
+.decision-twin-card{border:1px solid #35556a;border-radius:12px;background:linear-gradient(180deg,#0b1c2a,#081520);overflow:hidden;margin:12px 0}
+.decision-twin-head{display:flex;justify-content:space-between;align-items:center;padding:12px 13px;border-bottom:1px solid var(--line)}
+.decision-twin-head .eyebrow{font:9px 'DM Mono';color:#76c9e4;letter-spacing:.12em}
+.decision-twin-head b{display:block;font:700 13px Manrope;margin:3px 0}
+.decision-twin-head small{display:block;font-size:9px;color:var(--muted)}
+.decision-live-dot{border:1px solid #376a78;background:#123847;color:#8de0ed;border-radius:7px;padding:5px 8px;font:10px 'DM Mono'}
+#decisionTwin3D{height:245px;width:100%;position:relative;background:radial-gradient(ellipse at 50% 40%,#1a3a4b,#07121d 75%);touch-action:none}
+#decisionTwin3D canvas{display:block;width:100%;height:100%}
+.decision-twin-tools{display:flex;flex-wrap:wrap;gap:8px;padding:9px 12px;border-top:1px solid var(--line)}
+.decision-twin-tools label{font-size:9px;color:#c2d0da;display:flex;align-items:center;gap:4px}
+.decision-twin-tools input{accent-color:#68c9d9}
+.decision-twin-foot{font-size:9px;line-height:1.5;color:var(--muted);padding:0 12px 11px}
+
+.decision-cog-card{margin:12px 0}
+.decision-cog-card p{font-size:10px;color:var(--muted)}
+.decision-cog-label{display:flex;flex-direction:column;gap:5px;font-size:9px;color:var(--muted);margin:8px 0}
+.decision-cog-label input{width:100%;background:#081724;border:1px solid var(--line2);border-radius:7px;padding:9px;color:var(--ink);font:10px 'DM Mono'}
+.decision-cog-actions{display:flex;gap:7px;flex-wrap:wrap}
+
+.worlds-entry{display:inline-flex;align-items:center;justify-content:center;padding:8px 11px;border:1px solid #286174;border-radius:8px;background:#103747;color:#dffaff;font:600 10px 'DM Mono';white-space:nowrap}
+.worlds-entry:hover{background:#174b60;text-decoration:none;border-color:#5eb8ce}
+@media(max-width:1100px){.worlds-entry{padding:7px 8px;font-size:9px}}
+</style>
+
+<style id="nav-clarity">
+/* Navigation clarity pass: grouped tabs, labelled zoom, header that fits. Additive: remove this block to undo. */
+#steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0 6px}
+#steps button{display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 4px;border-radius:9px;border:1px solid var(--line,#263039);background:#101b27;color:#c5d2dc;font:600 11.5px/1 "DM Sans",system-ui,sans-serif;cursor:pointer}
+#steps button i{font-style:normal;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#22303d;font-size:10px}
+#steps button.on{border-color:#f2a33a;color:#fff;background:#2a2114}#steps button.on i{background:#f2a33a;color:#111}
+#stepHint{font-size:11.5px;color:#8b98a5;margin:0 0 8px}
+#drawer .tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#map-rail::before{content:"ZOOM";font:600 8.5px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.1em;color:#f2a33a;text-align:center;width:42px;margin-bottom:-1px}
+#map-rail #zoomIn,#map-rail #zoomOut{border-color:#f2a33a66;color:#fff}
+#map-rail #zoomIn svg,#map-rail #zoomOut svg{display:none}
+#map-rail #zoomIn::after{content:"+";font:600 24px/1 system-ui}#map-rail #zoomOut::after{content:"\2212";font:600 24px/1 system-ui}
+#top{flex-wrap:nowrap;overflow:hidden}
+@media(max-width:1700px){#top .top-context{display:none}#top .brand{min-width:150px}}
+@media(max-width:1500px){#exag{display:none}#top .brand-sub{display:none}#top #imagerySource{max-width:140px}}
+</style>
+</head>
+<body>
+<div id="globe" aria-label="Interactive 3D Earth map"></div>
+<div class="app-shell">
+  <header id="top" class="glass" aria-label="SWELL application header">
+    <div class="brand"><div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M4 15h16M12 3c2.8 2.4 4.2 5.4 4.2 9s-1.4 6.6-4.2 9c-2.8-2.4-4.2-5.4-4.2-9S9.2 5.4 12 3Z"/><path d="m5 5 3 1M16 18l3 1"/></svg></div><div><div class="brand-name">SWELL</div><div class="brand-sub">EARTH INTELLIGENCE NETWORK</div></div></div>
+    <div class="top-divider"></div><div class="top-context"><strong>Planetary observation</strong><small>Satellite imagery · physical twin · decisions</small></div><a class="worlds-entry" href="worlds.html" title="Open the separate SWELL Worlds dashboard">Worlds ↗</a>
+    <span id="src" class="source-chip">LOADING STUDY</span><span id="exag" class="micro-chip">Model overlay · not raw imagery</span><div class="top-spacer"></div>
+    <div class="top-control coordinate-control"><input id="coordinateSearch" type="text" inputmode="decimal" placeholder="lat, lon" aria-label="Go to latitude and longitude" style="width:105px;background:#142232;border:1px solid var(--line2);border-radius:8px;padding:8px 9px;color:#dce6ed;font:10px 'DM Mono'"><button id="goCoordinates" title="Go to coordinates">Go</button></div>
+    <div class="top-control"><select id="imagerySource" aria-label="NASA satellite imagery source" title="NASA satellite imagery"><option value="terra">Terra MODIS · true colour</option><option value="aqua">Aqua MODIS · true colour</option><option value="viirs">Suomi-NPP VIIRS · true colour</option><option value="esri">Esri high-res reference · not current</option></select><select id="world" title="Select world" aria-label="Select world"><option>Earth</option></select><button id="fly">Study site</button><button id="home">Planet view</button></div>
+    <div class="top-divider"></div><div class="top-control" aria-label="Context layers">
+      <label class="layer-toggle"><input type="checkbox" id="lyRain" checked> Rain</label><label class="layer-toggle"><input type="checkbox" id="lyCloud"> Clouds</label><label class="layer-toggle"><input type="checkbox" id="lyFire"> Fires</label><label class="layer-toggle"><input type="checkbox" id="lyQuake" checked> Quakes</label>
+    </div><div class="header-actions"><button class="icon-button" id="drawerToggle" title="Show or hide analysis panel" aria-label="Toggle analysis panel" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 12h16M4 19h16"/><path d="M15 5v14"/></svg></button></div>
+  </header>
+  <nav id="map-rail" aria-label="Map controls">
+    <button class="rail-btn" id="zoomIn" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="M16 16l5 5M10.8 7v7.6M7 10.8h7.6"/></svg></button>
+    <button class="rail-btn" id="zoomOut" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="M16 16l5 5M7 10.8h7.6"/></svg></button>
+    <div class="rail-sep"></div>
+    <button class="rail-btn" id="resetBearing" title="Reset map orientation" aria-label="Reset map orientation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="7"/><path d="m12 7 2.5 5-2.5 5-2.5-5L12 7Z"/></svg></button>
+  </nav>
+  <section id="map-hud" aria-live="polite"><div class="hud-card"><div class="hud-kicker">ACTIVE INVESTIGATION</div><div class="hud-title" id="siteTitle">Loading study region…</div><div class="hud-sub" id="siteSub">Preparing evidence layers</div></div><div class="hud-stats"><div class="hud-stat"><b id="metricPasses">—</b><span>ACQUISITIONS</span></div><div class="hud-stat"><b id="metricZones">—</b><span>VALID ZONES</span></div><div class="hud-stat"><b id="metricUnresolved">—</b><span>UNRESOLVED</span></div></div></section>
+  <section id="earth-panel" class="glass" aria-label="Earth explorer">
+    <div class="earth-panel-head"><span>EARTH EXPLORER</span><span class="earth-live"><i></i> DATA FEEDS</span></div>
+    <div class="earth-panel-title">Jump to a study region</div>
+    <div class="place-buttons">
+      <button data-place="Dallas–Fort Worth"><b>DFW</b><span>Texas · USA</span></button>
+      <button data-place="Toulouse"><b>TLS</b><span>France</span></button>
+      <button data-place="Nagpur"><b>NAG</b><span>India</span></button>
+    </div>
+    <div class="earth-source-row"><span class="source-square nasa"></span><span><b>NASA GIBS</b><small id="imageryDate">Satellite imagery loading</small></span></div>
+    <div class="earth-source-row"><span class="source-square usgs"></span><span><b>USGS earthquakes</b><small id="usgsStamp">Refreshing public event feed</small></span></div>
+    <div class="earth-source-row"><span class="source-square twin"></span><span><b>SWELL physical twin</b><small id="twinStamp">Study data status pending</small></span></div>
+    <div class="earth-panel-foot">Satellite context is NASA imagery, not continuous NISAR measurement. SWELL ground-motion overlays appear only where a study dataset is loaded.</div>
+  </section>
+  <section id="map-legend" aria-label="Map layer legend"><span class="legend-item"><i class="legend-dot dot-blue"></i> Observed</span><span class="legend-item"><i class="legend-dot dot-green"></i> Inferred</span><span class="legend-item"><i class="legend-dot dot-amber"></i> Forecast</span><span class="legend-item"><i class="legend-dot dot-violet"></i> Scenario</span><span class="legend-scale" id="legendScale">Select a state</span></section>
+  <div id="feed-pill"><i class="live-dot"></i><span id="feedStatus">Connecting to public context feeds…</span> <span id="quakeCount"></span></div>
+  <aside id="drawer" class="glass" aria-label="Analysis and investigation panel">
+    <div class="drawer-head"><div class="drawer-title-row"><div><div class="drawer-eyebrow">INVESTIGATION WORKSPACE</div><div class="drawer-title">Evidence & decisions</div><div class="drawer-desc">Move from observation to explanation, scenarios and accountable action.</div></div><button class="drawer-close" id="drawerClose" aria-label="Close analysis panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <div class="tabs" id="tabs"><span class="tab-group">1 · Understand what happened</span><button data-t="evidence" class="on">Evidence</button><button data-t="copilot">Research AI</button><button data-t="quake">Earthquakes</button><span class="tab-group">2 · Explore what could happen</span><button data-t="lab">What-if lab</button><button data-t="structures">Structures</button><button data-t="worlds">Other worlds</button><span class="tab-group">3 · Decide and act</span><button data-t="people">Action desk</button><button data-t="contracts">Contracts</button><button data-t="decisions">Decision studio</button><span class="tab-group">Your own data</span><button data-t="own">Your data</button></div>
+    </div>
+    <div class="drawer-body">
+      <div id="tab-evidence">
+        <h2>Model evidence</h2><div id="params" class="note"></div><h2>Validation checks</h2><table id="tests"></table>
+        <h2>Selected map cell</h2><div id="cell" class="note">Click the study-area overlay to inspect a cell.</div><canvas id="xsec" width="700" height="360" style="width:100%;border-radius:8px;background:#0e1216;margin-top:8px"></canvas><div class="note">Physical cut-away illustration driven by selected-cell values. Geometry and vertical displacement are exaggerated for visibility.</div>
+      </div>
+      <div id="tab-copilot" hidden>
+        <div class="research-banner"><span class="research-kicker">EVIDENCE-GROUNDED RESEARCH COPILOT</span><b id="researchSource">Waiting for a study region</b><small id="researchStatus">Structured evidence retrieval · no external LLM connected</small></div>
+        <h2>Competing hypotheses</h2>
+        <div id="hypothesisCards" class="hypothesis-grid"></div>
+        <div id="hypothesisEvidence" class="note"></div>
+        <h2>Ask the evidence</h2>
+        <div class="copilot-prompts">
+          <button data-q="What evidence supports the moisture artifact correction?">Moisture artifact?</button>
+          <button data-q="How does SWELL forecast compare with baselines?">Forecast vs baselines?</button>
+          <button data-q="What does the GPS comparison show?">GPS validation?</button>
+          <button data-q="What are the biggest limitations and next steps?">What is missing?</button>
+        </div>
+        <textarea id="researchQuestion" rows="3" style="width:100%;font:inherit" placeholder="Ask about the loaded study's evidence, model comparison, uncertainty or limitations…"></textarea>
+        <div class="row"><button id="researchAsk">Ask SWELL</button><span class="note">Answers are generated only from loaded validation records and fixed scientific guidance.</span></div>
+        <div id="researchAnswer" class="research-answer" aria-live="polite"><b>Ready when a study region is loaded.</b></div>
+        <div class="note">This is a deterministic, evidence-grounded research assistant, not a connected generative AI service. It cannot invent missing measurements. A future LLM can be added server-side as a language interface, with this evidence layer retained as its only source of site-specific facts.</div>
+      </div>
+      <div id="tab-lab" hidden><h2>Describe a scenario</h2><textarea id="ask" rows="3" style="width:100%;font:inherit" placeholder="e.g. 120 mm of rain over 4 days after 3 weeks of drought, with drainage cutting wetting by 40%"></textarea><div class="row"><button id="run">Run scenario</button><span id="understood" class="note"></span></div><h2>Adjust assumptions</h2><label>Rainfall input <output id="oRain">50</output> mm</label><input type="range" id="sRain" min="0" max="200" value="50"><label>Antecedent dry period <output id="oDry">0</output> days</label><input type="range" id="sDry" min="0" max="30" value="0"><label>Assumed wetting reduction <output id="oRed">0</output>%</label><input type="range" id="sRed" min="0" max="80" value="0"><label>Additional paved fraction <output id="oPav">0</output>%</label><input type="range" id="sPav" min="0" max="60" value="0"><canvas id="chart" width="700" height="300" style="width:100%;height:auto;background:#0e1216;border-radius:8px"></canvas><div id="labOut" class="note"></div><div class="note">Scenario outputs rerun the fitted equations under your inputs. They are conditional model results, not observations, weather forecasts or engineering designs.</div></div>
+      <div id="tab-people" hidden>
+        <div class="research-banner"><span class="research-kicker">SEVEN ROLE-SPECIFIC WORKFLOWS</span><b>Turn evidence into reviewed action</b><small>All roles use the same underlying study, uncertainty and provenance.</small></div>
+        <div class="row"><select id="who" aria-label="Stakeholder role"></select></div><div id="plan"></div>
+      </div>
+      <div id="tab-structures" hidden><h2>Structure / infrastructure screening</h2><div class="note">A transparent kinematic upper-bound scenario, not a structural analysis or safety assessment. Enter a differential ground-movement estimate from a survey or carefully reviewed model output.</div><div class="row"><label>Structure type<select id="structureType"><option>Unreinforced slab on grade</option><option>Stiffened (ribbed) slab</option><option>Post-tensioned slab</option><option>Pier and beam (suspended floor)</option><option>Flexible pavement (road)</option><option>Buried pipe (segmented)</option></select></label></div><div class="row"><label>Differential movement (mm)<input id="structureMove" type="number" min="0" max="500" step="0.5" value="10"></label><label>Structure span (m)<input id="structureSpan" type="number" min="0.5" max="500" step="0.5" value="10"></label></div><div class="row"><label>Edge transition (m)<input id="structureEdge" type="number" min="0.1" max="20" step="0.1" value="1.5"></label><label>Assumed edge reduction (%)<input id="structureReduce" type="number" min="0" max="100" step="5" value="0"></label></div><div class="row"><button id="structureRun">Calculate scenario</button><button id="structureUseCell">Use selected cell magnitude</button></div><canvas id="structureSketch" width="700" height="240" style="width:100%;background:#0e1216;border-radius:8px"></canvas><div id="structureOut" class="note">Enter assumptions and run the screening calculation.</div><div class="note">Radar pixels represent neighbourhood-scale areas. Building distortion guides do not apply to pipes or roads. Only a qualified engineer with site-specific measurements can assess structural performance.</div></div>
+      <div id="tab-contracts" hidden><div id="contracts"></div></div>
+      <div id="tab-own" hidden><h2>Load your study region</h2><div class="note">Process a site using <code>python -m swell.ingest</code> and <code>python -m swell.validate</code>, then load its site.json. The file is read locally in this browser and is not uploaded.</div><div class="row"><input type="file" id="upSite" accept=".json"></div><h2>Optional rainfall scenario</h2><div class="note">CSV with one non-negative daily rainfall value (mm) per line, beginning tomorrow.</div><div class="row"><input type="file" id="upRain" accept=".csv,.txt"></div><div id="ownOut" class="note"></div></div>
+      <div id="tab-worlds" hidden><div id="worldCard" class="note">Choose a world above. Radar has flown at Venus, Titan and the Moon.</div></div>
+      
+      <div id="tab-decisions" hidden>
+        <div class="decision-hero">
+          <div class="eyebrow">EVIDENCE → PHYSICS → ACTION</div>
+          <h2>Decision studio</h2>
+          <p>One shared evidence base, translated into role-specific plans and editable deliverables.</p>
+          <div class="decision-integrity"><b>DEMO DATA NOTICE</b><span id="decisionDataNotice">The loaded study is a synthetic test fixture. Outputs are illustrative drafts, not site instructions.</span></div>
+        </div>
+        <div class="decision-controls">
+          <label>Professional workspace<select id="decisionRole">
+            <option value="engineer">Civil / geotechnical engineer</option>
+            <option value="planner">City planner / resilience office</option>
+            <option value="utility">Water / infrastructure utility</option>
+            <option value="emergency">Emergency manager</option>
+            <option value="land">Farmer / land manager</option>
+            <option value="resident">Resident / property owner</option>
+            <option value="scientist">Research scientist</option>
+          </select></label>
+          <div class="decision-location"><span>SELECTED LOCATION</span><b id="decisionLocation">Study region · select a map cell</b><small id="decisionCoords">Coordinates will follow the selected map point.</small></div>
+        </div>
+        
+        
+        <div class="decision-card decision-cog-card">
+          <h4>Connect a georeferenced satellite raster</h4>
+          <p>Load a published COG through TiTiler. The raster must retain its CRS and geotransform; the server must be able to read the asset URL.</p>
+          <label class="decision-cog-label">TiTiler endpoint<input id="cogEndpoint" value="http://localhost:8001" spellcheck="false"></label>
+          <label class="decision-cog-label">Cloud Optimized GeoTIFF URL<input id="cogAssetUrl" placeholder="https://your-storage.example.org/derived/nisar-motion.cog.tif" spellcheck="false"></label>
+          <div class="decision-cog-actions"><button id="loadCogLayer" class="secondary-action">Add raster to Earth</button><button id="removeCogLayer" class="secondary-action">Remove raster</button></div>
+          <div id="cogLayerStatus" class="decision-help">No external raster connected. The current study overlay remains a synthetic fixture.</div>
+        </div>
+<div class="decision-twin-card">
+          <div class="decision-twin-head"><div><div class="eyebrow">SPATIALLY LINKED SCENE</div><b>Interactive subsurface twin</b><small id="twin3dStatus">Conceptual geology · not site-surveyed</small></div><span class="decision-live-dot">3D</span></div>
+          <div id="decisionTwin3D" role="img" aria-label="Interactive conceptual three-dimensional subsurface section. Drag to rotate and scroll to zoom."></div>
+          <div class="decision-twin-tools">
+            <label><input type="checkbox" id="twinShowWater" checked> Water table</label>
+            <label><input type="checkbox" id="twinShowBores" checked> Investigation points</label>
+            <label><input type="checkbox" id="twinShowBuilding" checked> Building context</label>
+            <label><input type="checkbox" id="twinShowDeform" checked> Deformation cue</label>
+          </div>
+          <div class="decision-twin-foot">Drag to orbit · scroll to zoom · right-drag to pan. Vertical exaggeration is illustrative. Soil horizons and structures are conceptual until local geotechnical and asset data are connected.</div>
+        </div>
+<h3 class="decision-section-title">Physical scenario controls</h3>
+        <p class="decision-help">Adjust boundary conditions to explore a conditional model response. These controls do not change observed Earth conditions. Groundwater rise is recorded for the scenario brief but is not yet coupled to the current moisture-response model.</p>
+        <div class="decision-sliders">
+          <label><span>7-day rainfall <b id="rainValue">120 mm</b></span><input id="decisionRain" type="range" min="0" max="300" value="120" step="5"></label>
+          <label><span>Drainage effectiveness <b id="drainValue">50%</b></span><input id="decisionDrain" type="range" min="0" max="100" value="50" step="5"></label>
+          <label><span>Groundwater rise (context only) <b id="waterValue">0.30 m</b></span><input id="decisionWater" type="range" min="0" max="2" value="0.3" step="0.05"></label>
+          <label><span>Planning horizon <b id="horizonValue">12 months</b></span><input id="decisionHorizon" type="range" min="1" max="60" value="12" step="1"></label>
+        </div>
+        <div class="decision-actions"><button id="runDecision" class="primary-action">Run physical scenario</button><button id="resetDecision" class="secondary-action">Reset assumptions</button></div>
+        <div id="plannerAssumptions" class="decision-card" hidden>
+          <h4>Editable planning assumptions · not observed facts</h4>
+          <div class="decision-sliders">
+            <label><span>Assets in planning area</span><input id="decisionAssets" type="number" min="1" max="100000" value="120"></label>
+            <label><span>Average asset value (USD)</span><input id="decisionAssetValue" type="number" min="1000" max="1000000000" value="180000"></label>
+            <label><span>Intervention budget (USD)</span><input id="decisionBudget" type="number" min="0" max="10000000000" value="2400000"></label>
+            <label><span>Assumed annual disruption loss (USD)</span><input id="decisionLoss" type="number" min="0" max="10000000000" value="650000"></label>
+          </div>
+        </div>
+        <div id="engineerAssumptions" class="decision-card" hidden>
+          <h4>Investigation scope assumptions · editable draft</h4>
+          <div class="decision-sliders">
+            <label><span>Target investigation depth (m)</span><input id="decisionDepth" type="number" min="1" max="100" value="8"></label>
+            <label><span>Initial borehole count</span><input id="decisionBores" type="number" min="1" max="100" value="5"></label>
+            <label><span>Survey grid spacing (m)</span><input id="decisionSpacing" type="number" min="1" max="1000" value="25"></label>
+            <label><span>Investigation area (ha)</span><input id="decisionArea" type="number" min="0.1" max="10000" step="0.1" value="4"></label>
+          </div>
+        </div>
+        <div id="decisionResults" class="decision-results" aria-live="polite">
+          <div class="decision-empty">Run a scenario to generate the physical interpretation, consequences and stakeholder-specific work package.</div>
+        </div>
+        <h3 class="decision-section-title">Generated deliverables</h3>
+        <p class="decision-help">Files are editable starting points. Engineering geometry is conceptual and must be surveyed, designed and approved by a qualified professional before construction.</p>
+        <div id="decisionDeliverables" class="decision-files"><div class="decision-empty">Run a scenario to prepare the relevant files.</div></div>
+      </div>
+<div id="tab-quake" hidden><div id="quake" class="note">Select an earthquake marker on the globe to inspect its public USGS event record.</div></div>
+    </div>
+  </aside>
+  <section id="bottom" class="glass" aria-label="Time and state controls"><div class="timeline-top"><span class="timeline-label">TEMPORAL EXPLORER</span><div class="states" id="states"><button data-s="observed" class="on">Observed</button><button data-s="inferred">Inferred</button><button data-s="forecast">Forecast</button><button data-s="scenario">Scenario</button></div><span id="stateNote">Select a state.</span><span id="when">—</span></div><div class="timeline-control"><span class="note" id="timeStart">PASS 01</span><input type="range" id="time" min="0" max="0" value="0" disabled aria-label="Acquisition time"><span class="note" id="timeEnd">PASS —</span><button id="play" disabled>Play</button></div><div class="timeline-foot"><span>Earlier acquisition</span><span>Later acquisition · dates are acquisition times, not continuous live monitoring</span></div></section>
+</div>
+<script src="model.js"></script><script src="research.js"></script><script src="app.js"></script><script src="earth-clarity.js"></script>
+</body></html>

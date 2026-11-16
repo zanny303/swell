@@ -1,0 +1,22 @@
+site: {"name": "Dallas-Fort Worth, USA", "source": "NASA NISAR GUNW (8 pairs, see out/provenance.json)", "n": 60, "passes": 9, "bbox": [-97.04991770065772, 32.591988771568076, -96.55063200764747, 33.00801362816949], "tests": [["T1 GPS referee", null], ["T2 Clay map", false], ["T3 Forecast holdout", false], ["T4 Unseen zone", false], ["T5 Refusal", false], ["T6 Paved vs open", true], ["Control ground", false]], "sensors": {}, "synthetic": false, "shown": true}
+science revision: {"version": "swell-science-0.2", "status": "EXPERIMENTAL \u2014 INSPECTION PLANNING ONLY", "failed": ["T2 Clay map", "T3 Forecast holdout", "T4 Unseen zone", "T5 Refusal", "Control ground"], "not_passed": ["T1 GPS referee", "T2 Clay map", "T3 Forecast holdout", "T4 Unseen zone", "T5 Refusal", "Control ground"], "alpha_at_boundary": true, "n_passes": 9, "approval_allowed": false, "reason": "Post-result model revision: requires a new independent acquisition and field/reference checks. Zero clay gain is a non-identification result, not evidence of zero ground movement.", "rolling_los": {"method": "Rolling referenced LOS hindcast; fixed training parameters; zero future rainfall assumption; common finite pixels", "physics_rmse_mm": 9.010156774637032, "persistence_rmse_mm": 9.85971496483501, "n": 5025, "per_pass": [{"origin_day": 72, "target_day": 84, "n": 1675, "physics_rmse_mm": 9.960660398370798, "persistence_rmse_mm": 7.796378979213608}, {"origin_day": 84, "target_day": 96, "n": 1675, "physics_rmse_mm": 8.429335263031504, "persistence_rmse_mm": 10.340612359281877}, {"origin_day": 96, "target_day": 108, "n": 1675, "physics_rmse_mm": 8.560392909344415, "persistence_rmse_mm": 11.132391854894324}], "best_retrospective_baseline": "physics_candidate", "limitations": "Archive-wide masks and detrending inherited; no independent physical truth or archived weather forecasts. Not prospective validation."}, "target": "Referenced line-of-sight change; vertical interpretation assumes negligible horizontal movement.", "soil": "Clay content may be a proxy, not directly measured linear extensibility.", "interval": "Nominal model spread, not calibrated predictive confidence."}
+scene: site
+scene: understand
+scene: simulate
+  cells changed by painting: 166
+scene: before_after
+  report card: Average movement, no-rain baseline0.0 mmAverage movement, your scenario0.0 mmChange+0.0 mm (– %)       Cells moving more than 5 mm, doing nothing0…in your scenario0Cells you changed on the map166       Your scenario is effectively unchanged from doing nothing 
+scene: my_decisions
+  planner/compare: Experimental screening only: no verified causal or operational prediction.Average movement across zones, 30 days after a 100 mm stormOptionAverage movementAgain
+  utility/leak: Choose a question on the left.
+  engineer/rank: Experimental screening only: no verified causal or operational prediction.Zones to look at firstZoneSeasonal movementSpread inside zoneUncertaintyZ7657.2 mm19.5
+  resident/mine: Experimental screening only: no verified causal or operational prediction.Your area (zone Z43, about 6 km across)The model estimates seasonal movement of about 
+  emergency/storm: Experimental screening only: no verified causal or operational prediction.0 of 0 zones move more than 5 mm within 30 days.ZoneNo more rainAfter the stormExtraTh
+scene: city_3d
+  3D city: Real terrain (Cesium World Terrain) and real building shapes (OpenStreetMap). Each building takes the colour of SWELL's estimate for the ground cell under it. It is the ground estimate, not a measurement of that building
+  photorealistic: Photorealistic 3D city: Google Photorealistic 3D Tiles through your Cesium ion account. The translucent colours are SWELL's ground estimate for each block of cells (about 1.9 km), draped over the city. They describe the 
+scene: verify
+  tests: [["T1 GPS referee", null], ["T2 Clay map", false], ["T3 Forecast holdout", false], ["T4 Unseen zone", false], ["T5 Refusal", false], ["T6 Paved vs open", true], ["Control ground", false]]
+  research panel: No change (last value)16.87 mmNetwork only, no physics23.37 mmPhysics-informed network16.56 mmClosed-form physics fit17.60 mmOn held-out passes the physics-informed network has lower error than the same network without physics. PINN also beats fixed-origin persistence on this retrospective split; external validation is still required. Constants the network settled on: α 0.01, b 0.94, T 32 days (cl
+page errors: 1
+  Cannot read properties of undefined (reading 'baseline_mm')

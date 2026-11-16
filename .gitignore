@@ -1,0 +1,15 @@
+out/
+data/
+__pycache__/
+.pytest_cache/
+*.npz
+.env
+out/_compare_backup/
+out/correction_runs/
+demo_out/
+.venv/
+!.env.example
+*.webm
+*.zip
+demo_*/
+SWELL_*_patch/

@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Elevation terrain DEM bare earth, multiple source resolutions. Confirm vertical datum and native resolution before comparing assets.

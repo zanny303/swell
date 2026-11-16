@@ -1,0 +1,10 @@
+{
+  "kind": "water_class",
+  "model": "replace with model and task",
+  "version": "replace with immutable release or checkpoint digest",
+  "source": "replace with repository, model card or measurement source",
+  "input_provenance": "replace with granule IDs, preprocessing and checkpoint hashes",
+  "valid_time_utc": "2026-01-01T00:00:00Z",
+  "units": "1",
+  "sha256": "replace with actual SHA-256 of raster"
+}

@@ -1,0 +1,69 @@
+{
+  "independent_comparison.py": {
+    "old": null,
+    "new": "5835ac967f65d8783f9520c4167365c0cd022262f2c5aac2a1d23050f5302e7b"
+  },
+  "projected_display.py": {
+    "old": null,
+    "new": "4e5c99a2fe7f81dd0cc8a7843e87b5d6f904ac8a22c9aed83fce5d16768993b8"
+  },
+  "stakeholder_mission.py": {
+    "old": "74e0cfb0627b1c74031e7610871a8020b1f8b569deb623c22ae0045a75b699c9",
+    "new": "2d37a1ecb41eb2df4d7002a26cadc9ccb510593580dd03a5686d2b7ea67c9372"
+  },
+  "science_assurance.py": {
+    "old": "9770889506ed079bac8344db09f37ef7673c03525d48d900889daae2b02265ea",
+    "new": "ed0ae74d65fed33d7bb6f3f88e906370efc44c5d22fca696e5965b8ec5881337"
+  },
+  "planetary_products.py": {
+    "old": "210bda200d8b0039eb63ad3e339907707c1c46f31f9a4e2305d9667fc744ce87",
+    "new": "f020221a583237212ac64ac65bef7a63db715c35ba65ba9fa9c7b0df8d29b7f2"
+  },
+  "record_recovery_demo.py": {
+    "old": "2414997d8b051d052a4340c195e02e22597b69d83d8e1126c2175c7561387ef1",
+    "new": "f2bf99ac56c179bd17b88000dfbb7b9f4914a3c26fc099f1667b0c040aa023d5",
+    "also_old": [
+      "96ec3ae847814dc0eb8e51dd9669ced3c727bfdaa7ae2165b21d7b9a9f736f72"
+    ]
+  },
+  "record_stakeholder_demo.py": {
+    "old": "7943d779313d67430c4a2731d606d06d5ecd2a72bd5bc965cf19f16cebe88bcf",
+    "new": "91181e2077be8f96ee96c7329b62e8ff57e160c696ac0df021df2631f5f623df"
+  },
+  "evaluate_momentum.py": {
+    "old": "4187a84ad8c40b7cfb98b6f062368a87385e629fefe0d0edc135f3a35dc0ce7b",
+    "new": "35984f38de56d7a56b161f129dda9deef4bf6fd5c5f206db879a296d355849ac"
+  },
+  "site/studio.js": {
+    "old": "ca74fc38470edf206425e0b61ac2a748655dc5b4b7f47621a3fa2c0cd870800b",
+    "new": "f42326328e334abdc502e18068541aeab6f79e1a3a8176250d4f8237bf62d8e2"
+  },
+  "site/evidence-workbench.js": {
+    "old": "b5edc73ecf2095f2fb475c853006884c3331a999fb47ee5745108d7d76c3204b",
+    "new": "9f9272e1e41c4ad27048bc4b4b924dde3a1cfbec944baf5f7546b84dc06f745e"
+  },
+  "site/focus.js": {
+    "old": "3ba906b9bf36208ea666d4af46a70ed64090f0e44159de28d4f5f71b7de84cd4",
+    "new": "41abbd02ee839cde7718e2d185f25dcd447ec3246d970535346b3bd2c29447f1"
+  },
+  "site/decision-mission.html": {
+    "old": "77115a6c26be32fae1bcfe61a1b345fd59c6277391a7c94f2e5ada9d242f623e",
+    "new": "bd61e05dbc46c8849e7230edd3956aa991a4aedf712c99b0918039ed0d7a9033"
+  },
+  "site/decision-mission.js": {
+    "old": "7155d8b9021c29debf0d014c7e4974f5c28b516f20edfa02d87408dd0dbc675c",
+    "new": "d5916839a225b18398c7b8832421cc9f2589d6e12ba7f47c14d344457b52fdb5"
+  },
+  "site/decision-mission.css": {
+    "old": "cd8540713f1664293bb78a10371ea54c650972356aeb8c283ffc2c7e9c60d0a1",
+    "new": "417b96708b14ffedc25b791eacf635c5073c0b977856a949becd40c828d90de0"
+  },
+  "site/welcome.html": {
+    "old": null,
+    "new": "6f8e1735cfb8613b070eb09a3b5468e37eeeae757cff381fffd1119f6942f8a5"
+  },
+  "tests/test_final_reliability.py": {
+    "old": null,
+    "new": "cd47613ec1c67b314acd3e4baeb37ef042e2d4f32cc92702dfc35c79b48e8050"
+  }
+}

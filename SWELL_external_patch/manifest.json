@@ -1,0 +1,57 @@
+[
+  {
+    "path": "external_evidence.py",
+    "old_sha256": null,
+    "new_sha256": "26058bfb927bad51d7e1e4ae248398920522dfe0aa15931e357878b8bc7313af"
+  },
+  {
+    "path": "terrain_routing.py",
+    "old_sha256": null,
+    "new_sha256": "347e4e431d5b2b621fe04df20cb58675767aa095fc6b286382781a26e937ce2d"
+  },
+  {
+    "path": "run_swell.py",
+    "old_sha256": "beff1a61dd38f00f20eeb334d6e64b88d2302e60b3a3a1a9441383af9cc9cc99",
+    "new_sha256": "213af83f40a5165dceb8216c255a85627ab780a4ed4a5f728e26a02c3208aa40"
+  },
+  {
+    "path": "ai_provider.py",
+    "old_sha256": "9e8a4b97837dd039c2c0441bad4ca022e939153a901490c2dc7840a86fa44059",
+    "new_sha256": "db888b825e2ff925d52ccd7c992f79b4a392b0dfa5479bac70af8b7cc561f160"
+  },
+  {
+    "path": "site/index.html",
+    "old_sha256": "c60e88031a2dde2fe7c5b681cc2d52608aced24726ed307364138a63c79fd8b7",
+    "new_sha256": "af62c78f7b52ab827c214c1adfa29a1f36ac6a9057c02078f47a8cda3923070b"
+  },
+  {
+    "path": "site/external-evidence.js",
+    "old_sha256": null,
+    "new_sha256": "3ca45a8a348abe7619cfe2c04e9cff73e619509b5e770cf9344908cb36b03ed5"
+  },
+  {
+    "path": "site/site-twin.html",
+    "old_sha256": "781039ece4f6b6ade9aca7e4ca5442012faf3fe7e74f3defe955134bfb006e15",
+    "new_sha256": "c5c74c9d1174cbef7212c40e1d48bd08ac5991da26a7a484d1c11a1dff487021"
+  },
+  {
+    "path": "site/site-twin.js",
+    "old_sha256": "a830782a8a676291eb8d7cba684fa7349ea05b26744c8d6599b9921428367ea3",
+    "new_sha256": "dc59f65d020116148ae4ce675ab5116aa1427675d3cd70c130b6704a026af610"
+  },
+  {
+    "path": "record_recovery_demo.py",
+    "old_sha256": "a433aaa6137fc2204a1b27be8828341b761eab18067e1c37adc6e3e0286d0b88",
+    "new_sha256": "90fbb638a7c0f1d34c013f471cf855131913218ad9dd2b572a217005f6490746"
+  },
+  {
+    "path": "tests/test_external_integrations.py",
+    "old_sha256": null,
+    "new_sha256": "5c8196ce6fb8da0db11c562ae5387a1a62dfcd1167b17416ccb4f77e433970be"
+  },
+  {
+    "path": "EXTERNAL_RESEARCH_INTEGRATION.md",
+    "old_sha256": null,
+    "new_sha256": "7ce98ef6a256b9d2bcea1e75aaa2eb49f343b0f3115cd37fc40870ceb4dd11fc"
+  }
+]

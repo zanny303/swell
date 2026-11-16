@@ -1,0 +1,9 @@
+SWELL — GPS Site Twin
+Python 3.11+ recommended. From this directory:
+  python -m pip install -r requirements-site-twin.txt
+  python install_renderers.py
+  python run_swell.py
+Open http://127.0.0.1:8000/ and choose Inspect GPS point or Open Site Twin.
+Direct: http://127.0.0.1:8000/site-twin.html
+See docs/SITE_TWIN_RELEASE.md for connectivity, NASA data, model limits and testing.
+Do not use outputs for emergency warnings, construction or machine operation without independent review.

@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Surface water optical SAR flood extent verification, 30 m posting; DSWx observations describe water presence, not water depth or structural damage. Match acquisition time and grid; exclude ambiguous classes.

@@ -1,0 +1,24 @@
+services:
+  titiler:
+    image: ghcr.io/developmentseed/titiler:latest
+    ports:
+      - "8001:8000"
+    environment:
+      - CPL_VSIL_CURL_ALLOWED_EXTENSIONS=.tif,.tiff,.vrt,.img,.jp2,.h5,.nc
+      - GDAL_HTTP_MULTIRANGE=YES
+      - GDAL_DISABLE_READDIR_ON_OPEN=EMPTY_DIR
+    command: uvicorn titiler.application.main:app --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+  postgis:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: swell
+      POSTGRES_USER: swell
+      POSTGRES_PASSWORD: change-this-local-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - swell-postgis:/var/lib/postgresql/data
+    restart: unless-stopped
+volumes:
+  swell-postgis:

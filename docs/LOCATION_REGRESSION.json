@@ -1,0 +1,11 @@
+{
+  "original": 106,
+  "unchanged": 102,
+  "changed": [
+    "run_swell.py",
+    "site/index.html",
+    "site/earth-preview.js",
+    "site/earth-preview.html"
+  ],
+  "removed": []
+}

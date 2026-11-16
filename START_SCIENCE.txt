@@ -1,0 +1,12 @@
+SWELL | Science-to-decision
+Open PowerShell inside this swell folder. Stop the old server first.
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-site-twin.txt
+python -m pip install earthaccess
+python install_renderers.py
+python run_swell.py
+Open http://127.0.0.1:8000/ (new Earth workspace)
+Existing advanced UI: http://127.0.0.1:8000/index.html
+See docs/SCIENCE_TO_DECISION_RELEASE.md for NASA downloads, solver, AI and verification.
+No passwords or tokens included or required for public feeds. Use your own restricted Cesium token.

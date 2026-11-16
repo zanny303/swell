@@ -1,0 +1,52 @@
+{
+  "run_swell.py": {
+    "old": "4361d52c7eb4bb84fff99a6f8a0f119a1f67dc5c777f9adcda33218a35ba7b22",
+    "new": "34b9119010ae7158c825383daa6c0f59983c6e8a14f4f7f650c29bb9bef90dfd",
+    "old_block": "        if parsed.path == \"/api/worlds/pds-search\":\n            q = parse_qs(parsed.query)\n            keywords = (q.get(\"keywords\") or [\"\"])[0][:180].strip()\n            limit = max(1, min(25, int((q.get(\"limit\") or [\"12\"])[0])))\n            if not keywords:\n                return self._json(400, {\"error\": \"Provide a keyword or mission name.\"})\n            params = urlencode({\"keywords\": keywords, \"limit\": limit})\n            req = urllib.request.Request(\n                f\"{PDS_SEARCH}?{params}\",\n                headers={\"Accept\": \"application/json\", \"User-Agent\": \"SWELL-Worlds/1.0\"}\n            )\n            try:\n                with urllib.request.urlopen(req, timeout=25) as response:\n                    raw = json.loads(response.read().decode(\"utf-8\"))\n                # PDS Search responses use a JSON-LD style envelope. Preserve the source\n                # records while normalizing the common result collection shapes.\n                results = raw.get(\"data\") or raw.get(\"results\") or raw.get(\"products\") or []\n                if isinstance(results, dict):\n                    results = results.get(\"results\") or results.get(\"items\") or []\n                total = raw.get(\"hits\") or raw.get(\"total\") or raw.get(\"summary\", {}).get(\"total\")\n                self._json(200, {\"source\": \"NASA PDS Search API\", \"query\": keywords,\n                                 \"total\": total, \"results\": results[:limit], \"raw_keys\": list(raw.keys())})\n            except urllib.error.HTTPError as exc:\n                detail = exc.read(1000).decode(\"utf-8\", \"replace\")\n                self._json(502, {\"error\": f\"PDS API returned HTTP {exc.code}\", \"detail\": detail})\n            except Exception as exc:\n                self._json(502, {\"error\": f\"Could not reach or parse NASA PDS Search API: {exc}\"})\n            return\n",
+    "new_block": "        if parsed.path in (\"/api/worlds/pds-search\", \"/api/worlds/native-dem\"):\n            import planetary_products as pp\n            q = parse_qs(parsed.query)\n            try:\n                if parsed.path.endswith(\"native-dem\"):\n                    if not _local_only(self): return self._json(403, {\"error\": \"Local workspace only\"})\n                    return self._json(200, pp.dem_window(q.get(\"body\", [\"\"])[0], q.get(\"lat\", [\"\"])[0], q.get(\"lon\", [\"\"])[0]))\n                keywords = q.get(\"keywords\", [\"\"])[0]\n                body = q.get(\"body\", [keywords])[0]\n                return self._json(200, pp.search(body, keywords, q.get(\"limit\", [\"12\"])[0]))\n            except ValueError as exc:\n                return self._json(400, {\"error\": str(exc)})\n            except Exception as exc:\n                return self._json(502, {\"error\": \"Planetary provider unavailable: \" + str(exc)[:250]})\n"
+  },
+  "record_recovery_demo.py": {
+    "old": "90fbb638a7c0f1d34c013f471cf855131913218ad9dd2b572a217005f6490746",
+    "new": "96ec3ae847814dc0eb8e51dd9669ced3c727bfdaa7ae2165b21d7b9a9f736f72"
+  },
+  "planetary_products.py": {
+    "old": null,
+    "new": "58124471d0bb4445375edfcf2900907bd93336e98c893dd9ba95785b4e677be5"
+  },
+  "site/planetary-terrain.js": {
+    "old": null,
+    "new": "76f6d664d4b583701346d14c8963302a8b84a63b2422403fc8959ede87f434d9"
+  },
+  "site/evidence-workbench.js": {
+    "old": "112ab4911afad75c6bbdf3598e41008f03752c3d170b89650f56cc327d741f0a",
+    "new": "76403ea3561d881cc129ddb9015bf9961a9ef3f0d8153b34f8bff9041e427410"
+  },
+  "site/worlds.js": {
+    "old": "71aca7c71a50d2e97dc634608d2edda78422a427c025857cea672b1a10ab3e0e",
+    "new": "8e69647ab1b8d5ecc7bac264589332157f791c4e370382fa10d86d89b5a011ef"
+  },
+  "site/worlds.html": {
+    "old": "3c3de592d29372c40e6fed614fd152160a9b55956e3d161ffd23a66745aefcbf",
+    "new": "d2d0c4247949a0b1d96c9e8a680bdf3142e436c89ae48b77a32562724fb7cc54"
+  },
+  "site/focus.js": {
+    "old": "bb301c48dd283cf3b02e8e918d604957dc561c6a9656a634e3631bb4afd59f65",
+    "new": "3ba906b9bf36208ea666d4af46a70ed64090f0e44159de28d4f5f71b7de84cd4"
+  },
+  "site/site-twin.js": {
+    "old": "dc59f65d020116148ae4ce675ab5116aa1427675d3cd70c130b6704a026af610",
+    "new": "40d1df1196f76c09e103382c806a144bc0dad934b06bd9251429515d71eb6678"
+  },
+  "site/ai-copilot.js": {
+    "old": "d61ff600e1b9a6b79f0c8c086958a7369782b2322c9383f35f4e569771e0a529",
+    "new": "fd35142ec6678ebec7d32a7704909e190e9c21bb7ae9b9f3bd23d7db4b9824da"
+  },
+  "site/studio.js": {
+    "old": "9f285858483bde438d945d515f5d04fe3c473bf4f33167062d26a416c7d5a3b6",
+    "new": "1e6fa6821edcef61c76cce89908c8d527a9cd2e381541e7d9c96f48ea0123bc5"
+  },
+  "tests/test_polish.py": {
+    "old": null,
+    "new": "fc9c9a9e83512a14b6f77bd734c8d6977932764cec88998de372046615682598"
+  }
+}

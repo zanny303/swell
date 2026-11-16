@@ -1,0 +1,36 @@
+/* SWELL usability pass: one active analysis panel, grouped layers, no duplicate workflow ribbon. */
+#flow{display:none!important}
+#bottom{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:34px minmax(0,1fr);gap:6px;min-height:0}
+#bottomTabs{display:flex;gap:6px;align-items:center;overflow-x:auto;margin:0;padding:0 2px}
+#bottomTabs button{white-space:nowrap;padding:6px 12px;border-radius:999px;background:#0c1b2a;border-color:#1c3348;color:#a9bdcb;font-size:11.5px}
+#bottomTabs button[aria-selected=true]{background:#123c49;border-color:#16a3b8;color:#e9f1f7}
+#bottom>.card{grid-column:1;grid-row:2;display:none;min-height:0}
+#bottom>.card.active{display:block}
+#bottom>.card[hidden]{display:none!important}
+#bottom>.card h2{margin-bottom:5px}
+#bottom #sliders{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px 12px}
+.layer-group{border-top:1px solid #14283a;padding:5px 0 2px;margin:0}
+.layer-group summary{cursor:pointer;color:#c4d5df;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.layer-group summary::-webkit-details-marker{display:none}
+.layer-group summary:after{content:'+';color:#8fa5b8;font-size:15px}
+.layer-group[open] summary:after{content:'−'}
+.layer-group .lay:first-of-type{margin-top:4px}
+#role2{display:none!important}
+#pkgList:before{content:'Using the role selected in the top bar · ';color:#8fa5b8}
+#right .role[data-role]:not(.on){display:none}
+#right .role[data-role].on{cursor:default}
+#sampleMode{border-color:#b88935;color:#ffd58c;white-space:nowrap}
+#sampleMode[hidden]{display:none}
+body.no-sample-twin{grid-template-rows:58px minmax(0,1fr)}
+body.no-sample-twin #bottom,body.no-sample-twin #tools,body.no-sample-twin #strip{display:none!important}
+body.no-sample-twin #stage{grid-template-columns:1fr!important}
+body.no-sample-twin #stage #twinBox{display:none!important}
+body.no-sample-twin #siteCard{max-width:290px}
+body.no-sample-twin #view button[data-v="split"],body.no-sample-twin #view button[data-v="twin"]{display:none}
+@media(max-width:1250px){#bottom #sliders{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){#bottom{grid-template-rows:auto minmax(180px,auto)}#bottom>.card{min-height:180px}#bottom #sliders{grid-template-columns:1fr 1fr}}
+
+.action-list label{display:flex;align-items:flex-start;gap:7px;cursor:pointer;font-size:12px;color:#d5e2e9}.action-list input{margin-top:2px;accent-color:#22c55e;flex:none}.action-list input:checked+span{color:#8fa5b8;text-decoration:line-through}.file-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;margin:4px 0}.file-row button{font-size:10.5px;padding:4px 8px}.stakeholder-preview{max-height:210px;overflow:auto;padding:9px;border:1px solid #1c3348;border-radius:8px;background:#071522;font-size:10.5px}
+/* Live-context mode exposes only the workflow that has real evidence available. */
+body.no-sample-twin #steps [data-step]:not([data-step="explore"]){display:none!important}
+body.no-sample-twin #role{display:none!important}

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SWELL Decision Studio</title>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root{--bg:#06111c;--card:#0c1b2a;--card2:#102438;--line:#1c3348;--ink:#e9f1f7;--mute:#8fa5b8;--green:#22c55e;--teal:#16a3b8;--amber:#f2a33a;
+--obs:#4aa3ff;--inf:#3ecf8e;--fc:#f2a33a;--scn:#c58af9;--bad:#ff6b6b}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+body{display:grid;grid-template-rows:58px minmax(0,1fr) 292px;gap:8px;padding:0 8px 8px}
+button,select,input,textarea{font:inherit;color:var(--ink);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+button{cursor:pointer}button:hover{border-color:#356080}a{color:#7cc4ff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;min-height:0;min-width:0}
+h2{font-size:15px;margin:0 0 2px}h3{font-size:11px;margin:12px 0 5px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.mute{color:var(--mute)}.small{font-size:11.5px}.ok{color:var(--green)}.bad{color:var(--bad)}
+/* header */
+header{display:flex;align-items:center;gap:14px;min-width:0}
+.logo{display:flex;align-items:center;gap:9px;flex:none}.logo b{font-size:20px;letter-spacing:.06em}.logo span{display:block;font-size:10.5px;color:var(--mute)}
+#steps{display:flex;gap:4px;flex:none}
+#steps button{border:0;background:none;padding:7px 12px;border-radius:10px;color:#b9c9d6;display:flex;flex-direction:column;align-items:center;gap:1px;font-weight:600}
+#steps button i{font-style:normal;font-size:10px;color:var(--mute);font-weight:500}
+#steps button.on{background:linear-gradient(180deg,#14532d,#166534);color:#fff}#steps button.on i{color:#c8f5d8}
+#search{flex:1;min-width:120px;display:flex;gap:6px}#search input{flex:1;min-width:0}
+header .right{display:flex;gap:8px;align-items:center;flex:none}#dataStatus{border:1px solid var(--line);border-radius:99px;padding:5px 9px;background:var(--card2);cursor:pointer;white-space:nowrap}#dataStatus.ready{border-color:var(--green);color:var(--green)}#dataStatus.warn{border-color:var(--amber);color:var(--amber)}
+/* main */
+#main{display:grid;grid-template-columns:238px minmax(0,1fr) 366px;gap:8px;min-height:0}
+#left{display:flex;flex-direction:column;overflow:hidden}
+#mini{height:168px;flex:none;border-radius:12px 12px 0 0;overflow:hidden;position:relative;cursor:pointer;background:#02060b}
+#mini .tag{position:absolute;left:8px;bottom:6px;font-size:10.5px;background:#06111ccc;padding:2px 7px;border-radius:99px;pointer-events:none}
+#layers{padding:8px 10px;overflow:auto}
+.lay{display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #14283a}
+.lay .sw{width:30px;height:30px;border-radius:7px}.lay b{display:block;font-size:12.5px}.lay span{font-size:11px;color:var(--mute);display:block}
+.tog{appearance:none;width:34px;height:19px;border-radius:99px;background:#2a3d50;border:0;position:relative;cursor:pointer;padding:0}
+.tog:checked{background:var(--green)}.tog::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;transition:.15s}.tog:checked::after{left:17px}
+#centre{display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+#chead{display:flex;align-items:center;gap:10px;padding:8px 12px;flex-wrap:wrap}
+#flow{display:flex;gap:0;margin-left:auto}
+#flow span{padding:4px 12px 4px 16px;background:var(--card2);font-size:11px;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%,9px 50%);margin-left:-5px;color:#b9c9d6;text-align:center;line-height:1.15}
+#flow span b{display:block;font-size:12px;color:#fff}#flow span.on{background:#166534}
+#stage{display:grid;grid-template-columns:1.25fr 1fr;gap:6px;padding:0 8px;min-height:0}
+#stage.map{grid-template-columns:1fr}#stage.map #twinBox{display:none}#stage.twin{grid-template-columns:1fr}#stage.twin #mapBox{display:none}
+#mapBox,#twinBox{position:relative;border-radius:10px;overflow:hidden;background:#02060b;min-height:0;min-width:0}
+#globe,#twin{position:absolute;inset:0}
+.cesium-viewer-bottom{font-size:9px;opacity:.75}
+.float{position:absolute;background:#081522e0;border:1px solid var(--line);border-radius:10px;padding:8px 10px;backdrop-filter:blur(6px);z-index:5}
+#siteCard{top:8px;left:8px;max-width:250px}#siteCard b{font-size:13.5px}
+#selCard{top:8px;right:56px;width:216px;display:none}
+#rail{top:8px;right:8px;padding:5px;display:flex;flex-direction:column;gap:5px}
+#rail button{width:34px;height:34px;padding:0;font-size:18px;font-weight:700;line-height:1}
+#rail button.txt{font-size:10px}
+#tools{left:8px;bottom:8px;display:flex;gap:5px;align-items:center;flex-wrap:wrap;max-width:calc(100% - 150px)}
+#tools button{padding:5px 8px;font-size:11.5px}#tools button.on{border-color:var(--scn);background:#2a1f3d;color:#fff}
+#tools input{width:58px;padding:3px 5px}
+#legend{right:8px;bottom:8px;font-size:10.5px;width:118px}#legend canvas{width:100%;height:10px;border-radius:3px;display:block;margin:4px 0 2px}
+#legend .lr{display:flex;justify-content:space-between}
+#twinHead{top:8px;left:8px;right:8px;display:flex;gap:8px;white-space:nowrap;align-items:center;justify-content:space-between;padding:6px 9px}
+#strata{left:8px;bottom:8px;font-size:11px;max-width:210px}#strata div{display:flex;gap:6px;align-items:center;margin:2px 0}#strata i{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none}
+#twinNote{left:8px;right:8px;top:50px;font-size:10.5px;color:var(--mute);padding:4px 9px;background:#08152299;border:0}
+#strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 10px}
+#states{display:flex;gap:4px}#states button{padding:5px 9px;font-weight:600;font-size:12px}
+#states button[data-s=observed].on{border-color:var(--obs);color:var(--obs)}#states button[data-s=inferred].on{border-color:var(--inf);color:var(--inf)}
+#states button[data-s=forecast].on{border-color:var(--fc);color:var(--fc)}#states button[data-s=scenario].on{border-color:var(--scn);color:var(--scn)}
+#passes{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
+#passes figure{margin:0;flex:none;text-align:center;font-size:9.5px;color:var(--mute);cursor:pointer}
+#passes canvas{width:38px;height:38px;border-radius:6px;border:2px solid transparent;display:block;background:#0a1826}
+#passes figure.on canvas{border-color:#fff}#passes figure.on{color:#fff}
+#ahead{display:none;align-items:center;gap:8px}#ahead input{flex:1}
+#view button.on,#twinHead button.on{border-color:var(--teal);color:#7fe3f2}
+/* right */
+#right{padding:12px 13px;overflow:auto}
+#right table{width:100%;border-collapse:collapse;font-size:12px}#right td,#right th{padding:4px 4px;border-bottom:1px solid #14283a;text-align:left;vertical-align:top}
+.kv{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:12.5px}.kv span{color:var(--mute)}
+.role{display:grid;grid-template-columns:34px 1fr;gap:9px;padding:8px;border:1px solid var(--line);border-radius:10px;margin:6px 0;cursor:pointer;background:var(--card2)}
+.role.on{border-color:var(--green)}.role .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:18px;background:#0b1a28}
+.files a{display:flex;justify-content:space-between;gap:8px;padding:5px 8px;margin:4px 0;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink);font-size:12px;background:#0b1a28}
+.files a span{color:var(--mute);font-size:10.5px}
+ol.plan{padding-left:18px;margin:6px 0}ol.plan li{margin:4px 0}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;border:1px solid var(--line);font-size:10.5px}
+.pill.syn{border-color:var(--amber);color:var(--amber)}
+.warn{border-left:3px solid var(--amber);padding:5px 8px;background:#1a1608;border-radius:0 8px 8px 0;font-size:11.5px;margin:8px 0}
+textarea{width:100%;resize:vertical}
+canvas.wide{width:100%;border-radius:8px;background:#081522;display:block}
+/* bottom */
+#bottom{display:grid;grid-template-columns:1.05fr 1.35fr 1.1fr .9fr;gap:8px;min-height:0}
+#bottom>.card{padding:10px 12px;overflow:auto}
+#sliders{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}.sl{display:grid;grid-template-columns:1fr 54px;gap:2px 6px;align-items:center;font-size:11.5px}.sl span:first-child{grid-column:1/3}
+.sl input[type=range]{padding:0;width:100%;accent-color:var(--teal)}.sl input[type=number]{width:54px;padding:2px 5px;text-align:right}
+#find li{margin:3px 0;font-size:12px}#find ul{padding-left:0;list-style:none;margin:6px 0}#find li::before{content:"✓ ";color:var(--green);font-weight:700}
+.big{width:100%;padding:10px;font-weight:700;background:var(--green);border-color:var(--green);color:#04130a;font-size:14px;margin-top:8px}
+.big:hover{filter:brightness(1.1)}
+@media (max-width:1250px){#main{grid-template-columns:200px minmax(0,1fr) 310px}#steps button i{display:none}#flow{display:none}}
+@media (max-height:760px){body{grid-template-rows:52px minmax(0,1fr) 206px}#mini{height:120px}}
+</style>
+<link rel="stylesheet" href="upgrade.css">
+<link rel="stylesheet" href="usability.css">
+<link rel="stylesheet" href="decision-experience.css">
+</head>
+<body>
+<header>
+  <div class="logo"><svg width="34" height="30" viewBox="0 0 34 30"><path d="M2 9c5-6 9-6 14 0s9 6 16 0M2 16c5-6 9-6 14 0s9 6 16 0M2 23c5-6 9-6 14 0s9 6 16 0" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round"/></svg>
+    <div><b>SWELL</b><span>Earth intelligence &amp; Stakeholder Decision Studio</span></div></div>
+  <nav id="steps"></nav>
+  <form id="search"><input id="q" placeholder="Search any place, or type lat, lon (e.g. Nagpur or 32.78, -96.80)"><button>Go</button></form>
+  <div class="right"><button id="sampleMode" hidden type="button">Show sample twin (synthetic)</button><button id="enable3D" type="button" title="Load Cesium World Terrain and OpenStreetMap 3D building geometry">Load 3D terrain + buildings</button><button id="dataStatus" type="button" class="small mute" title="Click to open data connections">Checking study data…</button><span id="studioStatus" class="small mute" role="status" aria-live="polite"></span><button id="askSwell" type="button" aria-haspopup="dialog">Ask SWELL</button><select id="role" title="Who are you deciding for?"></select><details id="more" style="position:relative"><summary style="cursor:pointer;list-style:none;padding:5px 9px;border:1px solid var(--line);border-radius:8px">More ▾</summary><div style="position:absolute;right:0;top:34px;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:grid;gap:7px;white-space:nowrap"><a href="connections.html"><b>Connections and real data</b></a><a href="live.html">Earth observatory (events, any location)</a><a href="site-twin.html">Local physical twin (terrain + water)</a><a href="worlds.html">Other worlds</a><a href="classic.html">Classic view</a><a href="offline.html">Offline workspace</a></div></details></div>
+</header>
+
+<div id="main">
+  <aside id="left" class="card">
+    <div id="mini" title="Click for the whole Earth"><div class="tag">Whole Earth · click to zoom out</div></div>
+    <div id="layers"><h2 style="font-size:14px">Earth observations <span id="liveTag" class="pill">checking…</span></h2><div id="layList"></div>
+      <div class="small mute" style="margin-top:6px" id="imgNote"></div><details id="dataBridge"><summary>Data connections &amp; uploads</summary><div id="bridgeControls"></div><div id="bridgeResult" class="small mute" aria-live="polite"></div></details></div>
+  </aside>
+
+  <section id="centre" class="card">
+    <div id="chead"><div><h2 id="stepTitle">Decision Studio</h2><span class="mute small" id="stepSub"></span></div>
+      <div id="flow"></div>
+      <div id="view"><button data-v="map">Map</button><button data-v="split" class="on">Split</button><button data-v="twin">3D twin</button></div></div>
+    <div id="stage">
+      <div id="mapBox"><div id="globe"></div>
+        <div id="siteCard" class="float"></div><div id="selCard" class="float"></div>
+        <div id="rail" class="float"><span id="zoomReadout">—</span><button id="zin" title="Zoom in">+</button><button id="zout" title="Zoom out">−</button><button id="north" class="txt" title="North up">N↑</button><button id="toSite" class="txt" title="Go to the study site">Site</button><button id="decisionPins" class="txt" title="Show or hide stakeholder decision pins">Decisions</button><button id="insightPins" class="txt" title="Show or hide model-derived observe-next insight pins (real sites only)">Insights</button><button id="toEarth" class="txt" title="Whole Earth">Earth</button><button id="mode2d" class="txt" title="Switch 2D / 3D">2D</button></div>
+        <div id="tools" class="float"><b class="small">Change the ground:</b>
+          <button data-tool="select" class="on">Inspect</button><button data-tool="water" title="Add water to the cells you drag over">+ Water</button><button data-tool="drain" title="Cut wetting in the cells you drag over">Drainage</button><button data-tool="pave" title="Add paving to the cells you drag over">Pave</button><button data-tool="green" title="Remove paving and plant: the cells you drag over become open, vegetated ground">Green</button><button data-tool="erase">Erase</button>
+          <label class="small mute">amount <input id="amt" type="number" value="60"> <span id="amtU">mm</span></label>
+          <label class="small mute">brush <input id="brush" type="number" value="2" min="1" max="6" style="width:42px"></label><button id="clearPaint">Reset</button></div>
+        <div id="legend" class="float"><b id="legT"></b><canvas id="legC" width="120" height="10"></canvas><div class="lr"><span id="legA"></span><span>0</span><span id="legB"></span></div><div class="mute" id="legN"></div></div>
+      </div>
+      <div id="twinBox"><div id="twin"></div>
+        <div id="twinHead" class="float"><b>Physical twin</b><span><button id="twinPlus" title="Zoom twin in" aria-label="Zoom twin in">+</button><button id="twinMinus" title="Zoom twin out" aria-label="Zoom twin out">−</button><button id="twinReset" title="Reset twin camera">Reset</button></span><label class="small mute">height ×<input id="exag" type="range" min="1" max="10" value="4" style="width:70px;padding:0;vertical-align:middle"></label><label class="small mute">clay zone <input id="za" type="number" value="3" min="0.5" max="10" step="0.5" style="width:48px;padding:2px 4px"> m</label></div>
+        <div id="strata" class="float"></div><div id="twinNote" class="float"></div>
+      </div>
+    </div>
+    <div id="strip">
+      <div id="states"><button data-s="observed">Observed</button><button data-s="inferred">Inferred</button><button data-s="forecast">Forecast</button><button data-s="scenario">Scenario</button></div>
+      <div><div id="passes"></div><div id="ahead"><span class="small mute">days ahead</span><input id="day" type="range" min="1" max="30" value="30"><b id="dayO"></b></div></div>
+      <div style="display:flex;gap:6px;align-items:center"><span id="when" class="pill"></span><button id="play">▶ Play</button></div>
+    </div>
+  </section>
+
+  <aside id="right" class="card"></aside>
+</div>
+
+<div id="bottom">
+  <nav id="bottomTabs" aria-label="Analysis panels"><button type="button" data-bottom-tab="scenario" aria-selected="true">Scenario</button><button type="button" data-bottom-tab="timeline" aria-selected="false">Timeline</button><button type="button" data-bottom-tab="findings" aria-selected="false">Findings</button><button type="button" data-bottom-tab="deliverables" aria-selected="false">Deliverables</button></nav>
+  <div class="card" data-bottom-panel="scenario"><h2>Scenario lab</h2><div class="mute small">Type it, drag it, or paint it on the map. The twin reruns its equations.</div>
+    <textarea id="ask" rows="1" placeholder="e.g. 120 mm of rain over 4 days after 3 weeks of drought, with drainage cutting wetting by 40%" style="margin-top:6px"></textarea>
+    <div style="display:flex;gap:8px;align-items:center;margin:4px 0"><button id="run" style="white-space:nowrap">Run what I typed</button><span id="understood" class="small mute"></span></div>
+    <div id="hydroMode"><label>Scenario engine <select id="engine"><option value="legacy">Original fitted model</option><option value="hydro">Water-balance screening</option></select></label><label id="gwLabel" hidden>Water table rise <input id="gwRise" type="number" min="0" max="5" step="0.1" value="0"> m</label></div><div id="sliders"></div></div>
+  <div class="card" data-bottom-panel="timeline"><div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><h2>Past → predicted</h2><span class="small"><span style="color:#4aa3ff">● estimated so far</span> <span style="color:#f2a33a">● <span id="baselineLegend">no further rain</span></span> <span style="color:#c58af9">● your scenario</span></span></div>
+    <div class="mute small" id="focusLbl"></div><canvas id="chart" class="wide" width="900" height="300" style="height:168px;margin-top:4px"></canvas></div>
+  <div class="card" id="find" data-bottom-panel="findings"><h2>Key findings</h2><div class="mute small">Written from the numbers on screen.</div><ul id="findings"></ul></div>
+  <div class="card" data-bottom-panel="deliverables"><h2>Generate decision package</h2><div class="mute small">Your role's files plus the scenario you built, in one zip.</div>
+    <select id="role2" style="width:100%;margin-top:8px"></select><div id="pkgList" class="small mute" style="margin-top:6px"></div>
+    <button class="big" id="gen">⬇ Generate package</button><div id="genOut" class="small mute" style="margin-top:4px"></div></div>
+</div>
+<script src="model.js"></script>
+<script src="research.js"></script>
+<script src="hydro.js"></script>
+<script src="studio.js"></script>
+<script src="causal.js"></script>
+<script src="usecases.js"></script>
+<script src="planner.js"></script>
+<script src="upgrade.js"></script>
+<script src="geo-upgrade.js"></script>
+<script src="location-bridge.js"></script>
+<script src="site-result-bridge.js"></script>
+<script src="usability.js"></script>
+<script src="scenario-shelf.js"></script>
+<script src="ai-copilot.js"></script>
+<script src="focus.js"></script>
+<script src="evidence-screen.js"></script>
+<script src="evidence-workbench.js"></script>
+<script src="external-evidence.js"></script>
+</body>
+</html>

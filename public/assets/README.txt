@@ -1,0 +1,2 @@
+blue-marble.jpg: NASA Blue Marble Next Generation global composite, distributed as bmng.jpg in basemap-data (Matplotlib Basemap). Historical composite, not live; 5400 x 2700 equirectangular image. NASA Earth Observatory: https://earthobservatory.nasa.gov/features/BlueMarble
+Basemap upstream: https://github.com/matplotlib/basemap ; see BASEMAP-LICENSE.txt. No additional artificial detail or generated imagery.

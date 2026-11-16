@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Research summary: optical HLS time-series foundation model. Fine-tune/evaluate on appropriate downstream datasets; not direct NISAR SAR inference.

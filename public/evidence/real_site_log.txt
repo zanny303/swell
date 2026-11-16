@@ -1,0 +1,25 @@
+SWELL real site: Dallas-Fort Worth, USA  box [-97.05, 32.6, -96.55, 33.0]
+radar   NISAR_L2_GUNW_V1: 0 products over this box
+radar   NISAR_L2_GUNW_PROVISIONAL_V1: 34 products over this box
+radar   NISAR_L2_GUNW_BETA_V1: 12 products over this box
+radar   catalog: 46 NISAR ground-motion (GUNW) products over this box
+radar   chosen: track 062A, frame 018, 8 consecutive pairs, 2026-06-30 to 2026-10-16, about 18.4 GB
+          2026-06-30 -> 2026-07-12  NISAR_L2_PR_GUNW_024_062_A_018_025_4000_SH_20260630T114437_20260630T114514_20260712T114437_20260712T114514_P05023_N_F_J_001.h5
+          2026-07-12 -> 2026-07-24  NISAR_L2_PR_GUNW_025_062_A_018_026_4000_SH_20260712T114437_20260712T114514_20260724T114436_20260724T114513_P05023_N_F_J_001.h5
+          2026-07-24 -> 2026-08-17  NISAR_L2_PR_GUNW_026_062_A_018_028_2000_SH_20260724T114436_20260724T114513_20260817T114435_20260817T114510_P05023_N_F_J_001.h5
+          2026-08-17 -> 2026-08-29  NISAR_L2_PR_GUNW_028_062_A_018_029_2000_SH_20260817T114435_20260817T114510_20260829T114435_20260829T114512_P05023_N_F_J_001.h5
+          2026-08-29 -> 2026-09-10  NISAR_L2_PR_GUNW_029_062_A_018_030_4000_SH_20260829T114435_20260829T114512_20260910T114435_20260910T114512_P05023_N_F_J_001.h5
+          2026-09-10 -> 2026-09-22  NISAR_L2_PR_GUNW_030_062_A_018_031_4000_SH_20260910T114435_20260910T114512_20260922T114435_20260922T114509_P05023_N_F_J_001.h5
+          2026-09-22 -> 2026-10-04  NISAR_L2_PR_GUNW_031_062_A_018_032_4000_SH_20260922T114435_20260922T114509_20261004T114435_20261004T114512_P05023_N_F_J_001.h5
+          2026-10-04 -> 2026-10-16  NISAR_L2_PR_GUNW_032_062_A_018_033_4000_SH_20261004T114435_20261004T114512_20261016T114435_20261016T114512_P05023_N_F_J_001.h5
+rain    NASA POWER: 136 contiguous days from 2026-06-30 through 2026-11-12, total 184 mm; all requested radar dates covered
+clay    SoilGrids 30-60 cm: 5-58 % clay, lowest quarter is below 39.0 %, 63% masked pixels filled with the site median
+paving  ESA WorldCover 2021: 40% of the box is built-up
+gnss    9 NGL GPS stations inside the box: GPRY, TWG1, TXDA, TXDF, TXDS, TXHC, TXHH, TXR2, TXRD
+gnss    4 stations have at least 20 daily positions in the radar period: TXDA, TXDF, TXHH, TXRD
+radar   reading the site window from 8 files online (no full download)
+radar   layout found in the file: /science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/unwrappedPhase
+radar   NISAR troposphere/tide layers were not found in these products; pairs keep the reference-surface correction only
+check   wetness index vs NASA surface soil wetness: rank correlation 0.64 over 136 days
+TWIN READY: the real site is written. Other satellites are added next; you can already open the Decision Studio.
+DONE    real site written to site/data/site.json. Restart: python run_swell.py  then open http://127.0.0.1:8000/

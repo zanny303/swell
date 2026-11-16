@@ -1,0 +1,70 @@
+{
+  "run_id": "7ee9d71b37a369f7dda9339d3da08bf2204d7a43ef92caf44fd56e1aa9984442",
+  "role": "engineer",
+  "metrics": {
+    "baseline_wet_area_m2": 67200.0,
+    "scenario_wet_area_m2": 67000.0,
+    "baseline_peak_m": 1.3988795143127994,
+    "scenario_peak_m": 1.3988511371571164,
+    "final_baseline_storage_m3": 19799.999999999978,
+    "final_scenario_storage_m3": 19731.294674745466
+  },
+  "tasks": [
+    {
+      "id": "source",
+      "action": "Check terrain source, datum and acquisition date",
+      "reason": "USGS 3DEP elevation service; resampled analysis grid, not native resolution",
+      "requires": "Survey confirmation before engineering use"
+    },
+    {
+      "id": "rain",
+      "action": "Confirm forcing and boundary assumptions",
+      "reason": "closed \u2014 rainfall ponding screening, not river flood prediction",
+      "requires": "Local rain/gauge data and boundary conditions"
+    },
+    {
+      "id": "validate",
+      "action": "Compare with time-matched observed surface water",
+      "reason": "Numerical predictions do not establish flood extent",
+      "requires": "OPERA WTR or independently observed depths"
+    },
+    {
+      "id": "role-0",
+      "action": "Obtain survey elevations, geotechnical borings, foundation and drainage plans.",
+      "reason": "Engineer review requirement",
+      "requires": "Human review"
+    },
+    {
+      "id": "role-1",
+      "action": "Validate catchment, design storm and hydraulic model before design.",
+      "reason": "Engineer review requirement",
+      "requires": "Human review"
+    }
+  ],
+  "ranked_scenarios": [],
+  "sources": [
+    {
+      "title": "NASA OPERA",
+      "url": "https://www.jpl.nasa.gov/go/opera/products/dswx-product-suite/",
+      "curated_note": "Surface water optical SAR flood extent verification, 30 m posting; DSWx observations describe water presence, not water depth or structural damage. Match acquisition time and grid; exclude ambiguous classes.",
+      "score": 0.21854446206792608
+    },
+    {
+      "title": "USGS 3DEP",
+      "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+      "curated_note": "Elevation terrain DEM bare earth, multiple source resolutions. Confirm vertical datum and native resolution before comparing assets.",
+      "score": 0.07795656060908364
+    },
+    {
+      "title": "EPA SWMM",
+      "url": "https://github.com/USEPA/Stormwater-Management-Model",
+      "curated_note": "Stormwater drains pipes sewer hydraulics require actual network geometry and capacity; idealized sink is not a drainage design.",
+      "score": 0.07712733979477052
+    }
+  ],
+  "comparisons": [],
+  "warning": "Draft model screening, not engineering design. Candidate edits are ranked by modeled wet area then peak depth then final storage; land ownership, costs, soil feasibility, pipe capacity, and structural constraints are unknown. No safe route or approved construction recommendation.",
+  "engineering_approved": false,
+  "reviewed_utc": "2026-11-16T00:27:06.972176+00:00",
+  "record_id": "707c8ae7410e957b718009d142c520747d89a40b0836cecd791564b66a2b56de"
+}

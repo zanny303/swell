@@ -1,0 +1,5 @@
+.........................................                                [100%]
+41 passed in 5.59s
+PASS: 12 hydro invariants (mass balance, bounded storage, response direction in controlled cases, zero intervention, reproducibility)
+PASS: AI-forcing conservation, intervention delta and incomplete forecast rejection
+PASS: location UI, unavailable sources, actual model computation, input invalidation and rerun

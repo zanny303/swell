@@ -1,0 +1,1 @@
+SWELL authored source summary, not a full-text paper or quote. Hydraulics flood routing requires appropriate boundary conditions; outlet permits outflow, closed edges do not. Test timestep and spatial resolution.

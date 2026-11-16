@@ -1,0 +1,5 @@
+-r requirements-earth.txt
+-r requirements-location.txt
+-r requirements-api.txt
+h5py>=3.10
+# Optional NASA authenticated downloads: python -m pip install earthaccess

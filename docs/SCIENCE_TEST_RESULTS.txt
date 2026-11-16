@@ -1,0 +1,10 @@
+Python pytest (actual):
+........................................................................ [ 98%]
+.                                                                        [100%]
+73 passed in 11.05s
+
+Browser checks (actual offline harness):
+PASS: actual new Earth UI, historical image, offline provider status, GPS controls, settings dialog. No live Cesium or external events.
+PASS: Chromium actual Site Twin markup, coordinate handoff, grid loading, zoom, painting, simulation, 3D surface, verification, export, invalidation; synthetic terrain only.
+
+External DNS unavailable; browser runs used historical imagery and explicitly synthetic numerical fixtures. No real satellite acquisition or live Cesium session was validated.

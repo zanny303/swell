@@ -1,0 +1,220 @@
+{
+ "site": "dallas",
+ "bbox": [
+  -97.04991770065772,
+  32.591988771568076,
+  -96.55063200764747,
+  33.00801362816949
+ ],
+ "requested_bbox": [
+  -97.05,
+  32.6,
+  -96.55,
+  33.0
+ ],
+ "scene_surface_filter": "per pair, a smooth surface (polynomial order 1) through 1018 reference (or mostly paved) cells is removed: atmosphere and orbit error. Any real motion of the reference ground is removed with it",
+ "clay_layer": "SoilGrids clay content 30-60 cm (%), not a shrink-swell rating",
+ "low_clay_threshold": 39.0,
+ "nisar_corrections": {
+  "requested": {
+   "troposphere": false,
+   "solid_earth_tide": false,
+   "ground_height_m": 150.0
+  },
+  "pairs_with_layers": 0
+ },
+ "high_pass": "none",
+ "grid_epsg": 32614,
+ "pass_dates": [
+  "2026-06-30",
+  "2026-07-12",
+  "2026-07-24",
+  "2026-08-17",
+  "2026-08-29",
+  "2026-09-10",
+  "2026-09-22",
+  "2026-10-04",
+  "2026-10-16"
+ ],
+ "chain_breaks": [],
+ "reference": "most-paved 10 % of cells, coherent (>0.5). WEAKER: clay may lie under this pavement",
+ "reference_cells": 6,
+ "valid_fraction_per_pass": [
+  1.0,
+  0.9888888888888889,
+  0.9888888888888889,
+  0.9861111111111112,
+  0.9855555555555555,
+  0.9855555555555555,
+  0.9847222222222223,
+  0.9627777777777777,
+  0.9361111111111111
+ ],
+ "rasters": [
+  {
+   "file": "C:\\Users\\budhw\\Downloads\\SWELL-final\\swell\\data\\dallas\\clay.tif",
+   "crs": "PROJCS[\"unknown\",GEOGCS[\"unknown\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Interrupted_Goode_Homolosine\"],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],EXTENSION[\"PROJ4\",\"+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs\"]]",
+   "res": [
+    250.33333333333874,
+    249.59641255605294
+   ],
+   "coverage": 1.0
+  },
+  {
+   "file": "C:\\Users\\budhw\\Downloads\\SWELL-final\\swell\\data\\dallas\\paved.tif",
+   "crs": "EPSG:4326",
+   "res": [
+    8.333333333333333e-05,
+    8.333333333333333e-05
+   ],
+   "coverage": 0.9905535514214304
+  }
+ ],
+ "correction_budget": [
+  {
+   "granule": "NISAR_L2_PR_GUNW_024_062_A_018_025_4000_SH_20260630T114437_20260630T114514_20260712T114437_20260712T114514_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-06-30",
+    "2026-07-12"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 13.5,
+   "incidence_deg": 41.06548309326172
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_025_062_A_018_026_4000_SH_20260712T114437_20260712T114514_20260724T114436_20260724T114513_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-07-12",
+    "2026-07-24"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 4.2,
+   "incidence_deg": 41.06393814086914
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_026_062_A_018_028_2000_SH_20260724T114436_20260724T114513_20260817T114435_20260817T114510_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-07-24",
+    "2026-08-17"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 4.16,
+   "incidence_deg": 41.063087463378906
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_028_062_A_018_029_2000_SH_20260817T114435_20260817T114510_20260829T114435_20260829T114512_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-08-17",
+    "2026-08-29"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 4.83,
+   "incidence_deg": 41.06086730957031
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_029_062_A_018_030_4000_SH_20260829T114435_20260829T114512_20260910T114435_20260910T114512_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-08-29",
+    "2026-09-10"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 12.66,
+   "incidence_deg": 41.06413269042969
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_030_062_A_018_031_4000_SH_20260910T114435_20260910T114512_20260922T114435_20260922T114509_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-09-10",
+    "2026-09-22"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 24.32,
+   "incidence_deg": 41.06550979614258
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_031_062_A_018_032_4000_SH_20260922T114435_20260922T114509_20261004T114435_20261004T114512_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-09-22",
+    "2026-10-04"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 5.97,
+   "incidence_deg": 41.06230163574219
+  },
+  {
+   "granule": "NISAR_L2_PR_GUNW_032_062_A_018_033_4000_SH_20261004T114435_20261004T114512_20261016T114435_20261016T114512_P05023_N_F_J_001.h5",
+   "pair": [
+    "2026-10-04",
+    "2026-10-16"
+   ],
+   "applied": [
+    "ionosphere"
+   ],
+   "nisar_layers": {},
+   "not_applied": [
+    "troposphere",
+    "solid_earth_tide",
+    "squint/unwrapping residuals"
+   ],
+   "scene_surface_removed_rms_mm": 10.87,
+   "incidence_deg": 41.06148910522461
+  }
+ ],
+ "incidence_note": "one mean incidence angle used; per-pixel angles are a TODO"
+}

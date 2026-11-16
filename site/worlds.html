@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#07111c" name="theme-color"/>
+<title>SWELL Worlds — Planetary Intelligence</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#06101a;--panel:#0b1926;--panel2:#102232;--line:#213747;--line2:#345267;--ink:#e8f1f6;--muted:#91a6b7;--cyan:#65d3e5;--gold:#e9b77c;--green:#6dd5b0;--amber:#eab36e;--red:#f08d7b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 52% 25%,#10283a 0,#06101a 55%);color:var(--ink);font:13px/1.45 'DM Sans',sans-serif}button,input,select{font:inherit;color:inherit}button{cursor:pointer}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+header{height:70px;display:flex;align-items:center;gap:20px;padding:0 22px;border-bottom:1px solid var(--line);background:#07131fee;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:10px;min-width:205px}.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,#69d8e7,#14728b);display:grid;place-items:center;color:#07131b;font-weight:900;font-size:20px}.brand b{font:800 17px Manrope;letter-spacing:.16em}.brand small{display:block;color:var(--muted);font:9px 'DM Mono';letter-spacing:.12em}
+.nav{display:flex;gap:6px;align-items:center}.nav a,.nav button{padding:9px 12px;border-radius:8px;border:1px solid transparent;background:transparent;color:#aebfca;font-size:11px}.nav .active{background:#103747;border-color:#286174;color:#e5fbff}.nav a:hover{background:#142b3b;text-decoration:none}.spacer{flex:1}.header-tag{font:9px 'DM Mono';color:#9fc4d1;border:1px solid #29485b;padding:7px 10px;border-radius:99px}
+main{max-width:1600px;margin:auto;padding:18px;display:grid;grid-template-columns:245px minmax(400px,1fr) 330px;gap:14px;align-items:start}
+.panel{background:linear-gradient(160deg,#0d1c2aee,#091722ee);border:1px solid var(--line);border-radius:13px;box-shadow:0 16px 45px #0003;overflow:hidden}.panel-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px}.panel-head b{font:700 12px Manrope}.eyebrow{font:9px 'DM Mono';letter-spacing:.13em;color:var(--cyan)}.muted{color:var(--muted)}.tiny{font-size:10px;color:var(--muted)}
+.left-col,.right-col,.center-col{display:grid;gap:13px}.world-list{padding:10px;display:grid;gap:7px}.world-choice{display:flex;align-items:center;gap:10px;text-align:left;padding:9px;border:1px solid transparent;border-radius:10px;background:#0b1b29;color:var(--ink)}.world-choice.active{border-color:#367b8e;background:#103344;box-shadow:inset 0 0 0 1px #286071}.planet-thumb{width:43px;height:43px;border-radius:50%;flex:none;box-shadow:inset -10px -5px 15px #0009,0 0 18px #6bc8e533}.planet-earth{background:radial-gradient(circle at 32% 28%,#80d4ec 0 7%,#2d8a9e 8% 19%,#337d55 20% 28%,#1b4266 29% 63%,#071522 70%)}.planet-mars{background:radial-gradient(circle at 34% 30%,#f1bc8c,#a64d32 50%,#4b201e 80%)}.planet-moon{background:radial-gradient(circle at 32% 30%,#e4e3dc,#888b91 50%,#343b44 82%)}.planet-venus{background:radial-gradient(circle at 35% 30%,#f9d89a,#b77836 55%,#50301b 85%)}.planet-europa{background:radial-gradient(circle at 32% 28%,#e5f5f4,#8ab3c2 55%,#294c5d 85%)}.planet-titan{background:radial-gradient(circle at 32% 28%,#e9a85f,#a75d2d 55%,#4d2a1c 85%)}.world-choice strong{display:block;font:700 11px Manrope}.world-choice small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.world-note{padding:12px 14px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);line-height:1.5}
+.hero{padding:16px 18px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.hero h1{font:800 23px Manrope;margin:4px 0 3px}.hero p{margin:0;color:var(--muted);font-size:11px}.status-pill{white-space:nowrap;border:1px solid #69543a;color:#edc28d;background:#2a2118;border-radius:99px;padding:6px 9px;font:9px 'DM Mono'}
+.globe-wrap{height:395px;position:relative;background:radial-gradient(ellipse at 50% 48%,#16364a,#06101a 72%);border-bottom:1px solid var(--line)}#planetCanvas{position:absolute;inset:0;width:100%;height:100%}.globe-overlay{position:absolute;pointer-events:none;left:15px;top:14px;display:grid;gap:5px}.globe-overlay b{font:700 13px Manrope}.globe-overlay span{font:9px 'DM Mono';color:#9cb7c7}.globe-controls{position:absolute;right:13px;top:13px;display:flex;gap:6px}.globe-controls button{pointer-events:auto;background:#0a1b29d9;border:1px solid #35546a;border-radius:8px;padding:7px 9px;font-size:10px}.globe-foot{position:absolute;bottom:12px;left:15px;right:15px;display:flex;justify-content:space-between;gap:10px;pointer-events:none;font:9px 'DM Mono';color:#a8bac8}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.metric{padding:10px;border:1px solid var(--line);border-radius:9px;background:#091722}.metric strong{display:block;font:700 17px Manrope;color:var(--cyan)}.metric span{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.body-copy{padding:13px 15px;font-size:11px;color:#c0ced8;line-height:1.6}.body-copy ul{margin:7px 0;padding-left:17px}.body-copy li{margin:3px 0}
+.data-actions{padding:12px 14px;display:grid;gap:8px}.field{display:grid;gap:5px}.field label{font-size:10px;color:#b6c6d0}.field input,.field select,.field textarea{width:100%;background:#071521;border:1px solid var(--line2);border-radius:8px;padding:9px;color:var(--ink);font-size:10px}.btn{background:#123849;border:1px solid #2d687b;border-radius:8px;padding:9px 11px;color:#e4faff;font-size:10px;font-weight:700}.btn.secondary{background:#132536;border-color:var(--line2);color:#c4d4de}.btn:disabled{opacity:.45;cursor:not-allowed}
+.catalog-results{padding:10px 13px;display:grid;gap:7px;max-height:275px;overflow:auto}.catalog-item{padding:9px;border:1px solid var(--line);border-radius:8px;background:#091722}.catalog-item b{font-size:10px;display:block}.catalog-item small{font-size:9px;color:var(--muted);display:block;margin:4px 0}.catalog-item a{font-size:9px}
+.upload-zone{margin:12px;padding:17px;border:1px dashed #42677b;border-radius:10px;background:#0a1c2a;text-align:center}.upload-zone input{max-width:100%;font-size:10px}.upload-zone p{font-size:10px;color:var(--muted);margin:7px 0}.upload-meta{padding:0 12px 12px;display:grid;gap:7px}.file-row{padding:9px;border:1px solid var(--line);border-radius:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}.file-row b{font-size:10px;display:block;overflow-wrap:anywhere}.file-row small{font-size:9px;color:var(--muted)}
+.right-col .panel{min-width:0}.env-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:12px}.env{padding:9px;border:1px solid var(--line);border-radius:8px;background:#091722}.env b{display:block;font:700 13px Manrope;color:#e7c18f}.env span{font-size:9px;color:var(--muted)}
+.planner{padding:13px;display:grid;gap:10px}.planner label{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#b8c8d2}.planner input{width:100%;accent-color:var(--cyan)}.planner output{font:10px 'DM Mono';color:var(--gold)}.result-box{padding:11px;border-radius:9px;background:#0a1d2a;border:1px solid #28495b;font-size:10px;color:#c2d2dc;line-height:1.55}.source-links{padding:12px;display:grid;gap:8px}.source-links a{font-size:10px;display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-bottom:7px}
+footer{max-width:1600px;margin:0 auto;padding:0 18px 20px;color:#718696;font-size:9px}
+@media(max-width:1180px){main{grid-template-columns:210px minmax(360px,1fr)}.right-col{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr))}.right-col .panel:last-child{grid-column:1/-1}}
+@media(max-width:760px){header{padding:0 12px;gap:9px}.brand{min-width:auto}.brand small,.header-tag,.nav a:not(.active){display:none}.nav{margin-left:auto}.nav a{padding:8px}.nav a.active{display:block}main{display:flex;flex-direction:column;padding:10px}.left-col,.center-col,.right-col{width:100%}.left-col{order:0}.world-list{grid-template-columns:repeat(3,1fr)}.world-choice{display:grid;justify-items:center;text-align:center;padding:8px 4px}.world-choice small{display:none}.globe-wrap{height:300px}.content-grid,.right-col{display:grid;grid-template-columns:1fr}.right-col .panel:last-child{grid-column:auto}.hero h1{font-size:19px}}
+
+/* ---- SWELL Worlds navigation refresh: task-based workspaces, persistent world selector ---- */
+main{max-width:1680px;margin:0 auto;padding:18px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}
+.left-col{display:grid;gap:12px;position:sticky;top:86px;max-height:calc(100vh - 104px);overflow:auto;padding-right:2px}
+.workspace-col{min-width:0;display:grid;gap:12px}
+.workspace-hint{padding:9px 12px;border:1px solid #294558;background:#0b1b28;border-radius:9px;color:#9eb2c0;font-size:10px}
+.workspace-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:7px;border:1px solid var(--line);border-radius:12px;background:#091722;position:sticky;top:78px;z-index:12}
+.workspace-tab{border:1px solid transparent;background:transparent;color:#aebfca;padding:10px 14px;border-radius:8px;font-size:11px;font-weight:700}
+.workspace-tab:hover{background:#132a39;color:#e7f6fc}
+.workspace-tab.active{background:#123b4c;border-color:#2e7085;color:#e8fbff;box-shadow:inset 0 0 0 1px #24586a}
+.workspace-view{display:none;min-width:0;gap:13px}
+.workspace-view.active{display:grid;animation:view-in .16s ease-out}
+@keyframes view-in{from{opacity:.65;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+.workspace-view .content-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.workspace-view .panel{min-width:0}
+.workspace-view[data-panel="environment"] .panel,.workspace-view[data-panel="habitation"] .panel{max-width:none}
+.globe-wrap{height:clamp(360px,52vh,590px)}
+.globe-controls{align-items:center;gap:6px}
+.globe-controls button{min-width:36px;min-height:34px;font-weight:700}
+#zoomIn,#zoomOut{font-size:17px;padding:4px 10px}
+.zoom-level{font:10px 'DM Mono';color:#b9d3df;background:#091a28dd;border:1px solid #35546a;border-radius:7px;padding:8px 9px;min-width:53px;text-align:center}
+.globe-foot span:first-child{max-width:75%;line-height:1.5}
+.world-choice{min-height:61px}
+.left-col .panel-head{position:sticky;top:0;background:#0d1c2a;z-index:2}
+.left-col .world-note{line-height:1.55}
+#catalogResults{max-height:480px}
+.workspace-view[data-panel="catalog"] .panel{min-height:340px}
+.workspace-view[data-panel="studio"] .panel{max-width:100%}
+.workspace-view[data-panel="studio"] .upload-zone{padding:26px}
+.workspace-view[data-panel="studio"] .data-actions{grid-template-columns:1fr 1fr}
+.workspace-view[data-panel="studio"] .data-actions>.field:last-child{grid-column:1/-1}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #65d3e5;outline-offset:2px}
+@media(max-width:1050px){
+ main{grid-template-columns:210px minmax(0,1fr);padding:12px;gap:11px}
+ .globe-wrap{height:390px}
+}
+@media(max-width:760px){
+ header{height:auto;min-height:64px;flex-wrap:wrap;padding:10px 13px;gap:9px}
+ .brand{min-width:0}.header-tag{display:none}
+ main{display:flex;flex-direction:column;padding:10px}
+ .left-col{position:static;max-height:none;width:100%;grid-template-columns:1fr}
+ .left-col .panel:first-child .world-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .workspace-col{width:100%}
+ .workspace-tabs{position:sticky;top:0;overflow-x:auto;flex-wrap:nowrap}
+ .workspace-tab{white-space:nowrap;padding:10px 12px}
+ .globe-wrap{height:350px}
+ .workspace-view .content-grid{grid-template-columns:1fr}
+ .workspace-view[data-panel="studio"] .data-actions{grid-template-columns:1fr}
+ .workspace-view[data-panel="studio"] .data-actions>.field:last-child{grid-column:auto}
+ .globe-foot{font-size:8px}
+}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">◉</div><div><b>SWELL</b><small>WORLDS · PLANETARY INTELLIGENCE</small></div></div>
+<nav class="nav"><a href="live.html">Earth platform</a><a class="active" href="worlds.html">Worlds</a></nav><span class="spacer"></span><span class="header-tag">MISSION DATA · USER DATA · PHYSICAL PLANNING</span></header>
+<main><section class="left-col"><div class="panel"><div class="panel-head"><b>Explore worlds</b><span class="eyebrow">SELECT BODY</span></div><div class="world-list" id="worldList">
+<button class="world-choice active" data-world="mars"><span class="planet-thumb planet-mars"></span><span><strong>Mars</strong><small>Terrain · climate · habitation</small></span></button>
+<button class="world-choice" data-world="moon"><span class="planet-thumb planet-moon"></span><span><strong>Moon</strong><small>Lunar south pole · resources</small></span></button>
+<button class="world-choice" data-world="earth"><span class="planet-thumb planet-earth"></span><span><strong>Earth</strong><small>Earth platform remains primary</small></span></button>
+<button class="world-choice" data-world="venus"><span class="planet-thumb planet-venus"></span><span><strong>Venus</strong><small>Radar geology · atmosphere</small></span></button>
+<button class="world-choice" data-world="europa"><span class="planet-thumb planet-europa"></span><span><strong>Europa</strong><small>Ice shell · mission archives</small></span></button>
+<button class="world-choice" data-world="titan"><span class="planet-thumb planet-titan"></span><span><strong>Titan</strong><small>Atmosphere · methane cycle</small></span></button>
+</div><div class="world-note">Worlds is an independent workspace. Earth monitoring and the existing Decision Studio are unchanged.</div></div><div class="panel"><div class="panel-head"><b>World reference</b><span class="eyebrow" id="bodyCode">MARS / IAU</span></div><div class="body-copy" id="worldFacts"></div></div><div class="panel"><div class="panel-head"><b>Authoritative data services</b><span class="eyebrow">OPEN SOURCES</span></div><div class="source-links" id="sourceLinks"></div><div class="body-copy"><details><summary>Planetary data explorer</summary><p>NASA PDS ODE provides spatial searches for actual orbital data. Use MOLA for Mars topography, LOLA for the Moon, and Diviner for lunar temperature. These links open the science archives; terrain ingestion remains manual.</p><a href="https://ode.rsl.wustl.edu/mars/" target="_blank" rel="noopener">Mars MOLA / MRO ↗</a><br><a href="https://ode.rsl.wustl.edu/moon/" target="_blank" rel="noopener">Lunar LOLA / Diviner ↗</a><br><a href="https://fdp.astrogeology.usgs.gov/fdp/mars/" target="_blank" rel="noopener">USGS foundational Mars data ↗</a></details></div></div></section><section class="workspace-col"><div class="workspace-hint">Choose a workspace above. World selection stays on the left; each workspace contains only the tools for that task.</div><nav aria-label="Worlds workspace" class="workspace-tabs"><button aria-selected="true" class="workspace-tab active" data-view="explore" type="button">Explore</button><button aria-selected="false" class="workspace-tab" data-view="environment" type="button">Environment</button><button aria-selected="false" class="workspace-tab" data-view="habitation" type="button">Habitation</button><button aria-selected="false" class="workspace-tab" data-view="catalog" type="button">Mission data</button><button aria-selected="false" class="workspace-tab" data-view="studio" type="button">Data studio</button></nav><div class="workspace-view active" data-panel="explore"><div class="panel">
+<div class="hero"><div><div class="eyebrow">PLANETARY ENVIRONMENT EXPLORER</div><h1 id="worldTitle">Mars · Physical environment</h1><p id="worldSubtitle">Explore orbital observations, surface context and candidate habitation regions.</p></div><span class="status-pill" id="worldStatus">ARCHIVED OBSERVATIONS</span></div>
+<div class="globe-wrap"><div id="planetCanvas"></div><div class="globe-overlay"><b id="globeName">MARS</b><span id="globeCoords">IAU body-fixed reference · selectable body</span></div><div class="globe-controls"><button aria-label="Zoom in" id="zoomIn" title="Zoom in" type="button">+</button><button aria-label="Zoom out" id="zoomOut" title="Zoom out" type="button">−</button><button aria-label="Reset globe view" id="resetView" title="Reset globe view" type="button">Reset</button><button aria-label="Pause automatic rotation" id="rotateToggle" title="Pause automatic rotation" type="button">Pause</button><span class="zoom-level" id="zoomLevel">100%</span></div><div class="globe-foot"><span>DRAG TO ROTATE · SCROLL OR +/- TO ZOOM · SELECT LOCATION</span><span id="globeDisclaimer">Illustrative globe; not a measured terrain product</span></div></div>
+<div class="metrics"><div class="metric"><strong id="metricMission">MRO · LRO</strong><span>MISSION ARCHIVES</span></div><div class="metric"><strong id="metricData">PDS / ODE</strong><span>DATA ACCESS</span></div><div class="metric"><strong id="metricMode">RESEARCH</strong><span>WORKSPACE MODE</span></div></div>
+</div></div><div class="workspace-view" data-panel="environment"><div class="panel"><div class="panel-head"><b>Environmental context</b><span class="eyebrow" id="envMode">LATEST / ARCHIVE</span></div><div class="env-grid" id="envMetrics"></div><div class="body-copy" id="envNote">Mission observations and modelled environmental fields are shown separately. No unsupported live-weather claim.</div></div><div class="panel"><div class="panel-head"><b>Environment &amp; science layers</b><span class="eyebrow">AVAILABLE / MODELLED</span></div><div class="body-copy" id="environmentText"></div></div></div><div class="workspace-view" data-panel="habitation"><div class="panel"><div class="panel-head"><b>Habitat screening scenario</b><span class="eyebrow">USER ASSUMPTIONS</span></div><div class="planner">
+<div class="field"><label for="siteType">Mission concept</label><select id="siteType"><option value="outpost">Crewed research outpost</option><option value="robotic">Robotic science station</option><option value="industrial">ISRU pilot facility</option></select></div>
+<div class="field"><label>Solar availability assumption <output id="solarVal">60%</output></label><input id="solarInput" max="100" min="0" type="range" value="60"/></div>
+<div class="field"><label>Radiation shielding allowance <output id="shieldVal">2.0 m</output></label><input id="shieldInput" max="5" min="0" step=".1" type="range" value="2"/></div>
+<div class="field"><label>Water reserve assumption <output id="waterVal">90 sols / days</output></label><input id="waterInput" max="365" min="7" type="range" value="90"/></div>
+<button class="btn" id="runHabitat">Evaluate planning assumptions</button>
+<div class="result-box" id="habitatResult">Adjust assumptions and run a screening summary. This is not a landing-site safety certification or engineering design.</div>
+</div></div><div class="panel"><div class="panel-head"><b>Habitation &amp; mission planning</b><span class="eyebrow">CONCEPT WORKBENCH</span></div><div class="body-copy" id="habitatText"></div></div></div><div class="workspace-view" data-panel="catalog"><div class="panel"><div class="panel-head"><b>Mission data catalog</b><span class="eyebrow">PDS SEARCH</span></div><div class="data-actions">
+<div class="field"><label for="catalogQuery">Search mission archive</label><input id="catalogQuery" placeholder="e.g. HiRISE, MOLA, LRO, LOLA" value="Mars"/></div>
+<button class="btn" id="searchCatalog">Search NASA PDS archive</button>
+<div class="tiny" id="catalogStatus">Searches the NASA Planetary Data System metadata API. Results depend on archive coverage.</div>
+</div><div class="catalog-results" id="catalogResults"><div class="tiny">Run a search to retrieve current archive records.</div></div></div></div><div class="workspace-view" data-panel="studio"><div class="panel"><div class="panel-head"><b>Bring your own planetary data</b><span class="eyebrow">DATA STUDIO</span></div>
+<div class="data-actions">
+<div class="field"><label for="uploadCrs">Coordinate reference / datum</label><select id="uploadCrs">
+<option value="IAU_MARS_2000">Mars · IAU 2000 body-fixed (confirm product datum)</option>
+<option value="IAU_MOON_2015">Moon · IAU 2015 body-fixed (confirm product datum)</option>
+<option value="WGS84">Earth · WGS84</option>
+<option value="IAU_VENUS_2015">Venus · IAU 2015 body-fixed</option>
+<option value="IAU_EUROPA_2000">Europa · IAU 2000 body-fixed</option>
+<option value="IAU_TITAN_2000">Titan · IAU 2000 body-fixed</option>
+<option value="UNKNOWN">Unknown / not verified</option>
+</select></div>
+<div class="content-grid">
+<div class="field"><label for="uploadUnits">Measurement units</label><input id="uploadUnits" placeholder="e.g. metres, kelvin, dB, mm/yr"/></div>
+<div class="field"><label for="uploadDate">Observation date / mission time</label><input id="uploadDate" placeholder="UTC, YYYY-MM-DD or sol"/></div>
+</div>
+<div class="field"><label for="uploadDescription">Dataset description / instrument</label><input id="uploadDescription" placeholder="e.g. LOLA DEM, HiRISE orthoimage, local rover traverse"/></div>
+</div>
+<div class="upload-zone" id="dropZone"><b>Upload scientific data to this world</b><p>GeoTIFF / COG · GeoJSON · CSV · NetCDF · HDF5 · PDS labels / IMG · LAS / LAZ · GLB / glTF</p><input accept=".tif,.tiff,.geotiff,.cog,.geojson,.json,.csv,.nc,.netcdf,.h5,.hdf5,.img,.lbl,.xml,.las,.laz,.glb,.gltf,.ply" id="worldFiles" multiple="" type="file"/></div>
+<div class="upload-meta" id="uploadList"><div class="tiny">Uploaded files are assigned to the selected world and inspected locally. Large scientific formats are catalogued; full scientific decoding requires the corresponding processing adapter.</div></div>
+</div></div></section></main>
+<footer>SWELL Worlds is a research and planning workspace. Globe textures are illustrative until a validated planetary basemap is connected. Archived mission measurements, model output, user assumptions and derived products must remain separately identified.</footer>
+<script src="worlds.js"></script>
+</body></html>

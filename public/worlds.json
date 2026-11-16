@@ -1,0 +1,30 @@
+{
+  "_note": "Radar on other worlds. Only Earth has a SWELL twin: NISAR observes Earth. Tile URLs follow NASA Solar System Treks' pattern and were written without network access: 'confidence' says how sure the product name is. If a layer does not draw, open the Trek site for that body, copy the product name from its layer list, and fix it here.",
+  "worlds": [
+    {"id": "earth", "name": "Earth", "twin": true},
+    {"id": "venus", "name": "Venus", "radar": "Magellan S-band SAR (12.6 cm), 1990-1992",
+     "tiles": "https://trek.nasa.gov/tiles/Venus/EQ/Venus_Magellan_C3-MDIR_Global_Mosaic_2025m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg", "maxLevel": 5, "confidence": "product name unverified",
+     "markers": [{"name": "Maat Mons vent", "lon": 194.6, "lat": 0.5, "approx": true,
+       "what": "A volcanic vent on the Maat Mons system grew larger and changed shape between two Magellan radar images taken eight months apart (Herrick and Hensley, Science, 2023). It is radar change detection on another planet.",
+       "source": "https://doi.org/10.1126/science.abm7735"}],
+     "twin_needs": "Repeat-pass radar with phase. Magellan gave two or three looks, years apart and without usable interferometry. NASA's planned VERITAS mission is designed to do radar interferometry at Venus."},
+    {"id": "titan", "name": "Titan", "radar": "Cassini RADAR, Ku-band SAR (2.2 cm), 2004-2017",
+     "tiles": "https://trek.nasa.gov/tiles/Titan/EQ/Titan_ISS_P19658_Mosaic_Global_4km/1.0.0/default/default028mm/{z}/{y}/{x}.jpg", "maxLevel": 4, "confidence": "product name likely; this is the camera mosaic, not the radar mosaic",
+     "markers": [{"name": "Ligeia Mare transient feature", "lon": 112.0, "lat": 79.0, "approx": true,
+       "what": "A bright feature of about 260 square km appeared in Cassini radar images of the sea Ligeia Mare in July 2013 and had changed when seen again on 21 August 2014. Suggested causes: waves, bubbles, or floating or suspended solids.",
+       "source": "https://www.jpl.nasa.gov/news/cassini-watches-mysterious-feature-evolve-in-titan-sea/"}],
+     "twin_needs": "Flybys were months to years apart with different viewing angles, so there is no time series to fit. The radar mosaic itself is a 1 GB file from USGS Astrogeology (see README)."},
+    {"id": "moon", "name": "Moon", "radar": "LRO Mini-RF (S and X band); Chandrayaan-2 DFSAR (L and S band, to verify)",
+     "tiles": "https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0/default/default028mm/{z}/{y}/{x}.jpg", "maxLevel": 7, "confidence": "product name likely",
+     "markers": [{"name": "South pole, Shackleton crater", "lon": 0.0, "lat": -89.9, "approx": true,
+       "what": "Orbital radar looks into permanently shadowed craters for signs of ice. The open question is whether a bright radar return means ice or just rough rock: the same 'is it real or is it the radar' problem SWELL faces with wet soil.",
+       "source": "https://www.nasa.gov/mission/lunar-reconnaissance-orbiter/"}],
+     "twin_needs": "The surface barely changes on radar timescales. A twin would need a driver that changes (temperature cycles, impacts) and repeat radar with phase."},
+    {"id": "mars", "name": "Mars", "radar": "No imaging SAR has flown. SHARAD and MARSIS are sounders that look down through ice and rock",
+     "tiles": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg", "maxLevel": 7, "confidence": "product name likely",
+     "markers": [{"name": "Gale crater clays", "lon": 137.4, "lat": -4.6, "approx": true,
+       "what": "Curiosity drilled clay-bearing rock here. Mars has swelling clays but almost no liquid water to drive them today, and no repeat-pass radar to watch the ground.",
+       "source": "https://science.nasa.gov/mission/msl-curiosity/"}],
+     "twin_needs": "An orbiting imaging radar with repeat passes. Until then, Mars surface change is tracked with before-and-after camera images, not radar phase."}
+  ]
+}
